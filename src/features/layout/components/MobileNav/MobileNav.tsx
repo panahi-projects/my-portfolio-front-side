@@ -7,18 +7,20 @@ import {
   VscMenu,
   VscClose,
   VscSettingsGear,
-  VscSourceControl,
   VscSparkle,
   VscSearch,
 } from "react-icons/vsc";
 import { Link, usePathname } from "@/i18n/navigation";
 import { PAGES, DECORATIVE_FILES, findPageByPath } from "@/features/layout/constants/pages";
+import { CopilotPaneTrigger, useCopilotPane } from "@/features/layout/components/CopilotPane";
+import { GitStatus } from "@/features/layout/components/GitStatus";
 
 export function MobileNav() {
   const t = useTranslations("common");
   const pathname = usePathname();
   const activePage = findPageByPath(pathname);
   const [open, setOpen] = useState(false);
+  const { toggle: toggleCopilot } = useCopilotPane();
 
   // Close on route change
   useEffect(() => {
@@ -67,6 +69,7 @@ export function MobileNav() {
         <div className="ms-auto flex items-center gap-1">
           <button
             type="button"
+            onClick={toggleCopilot}
             aria-label={t("copilot.title")}
             className="grid h-9 w-9 place-items-center rounded"
             style={{ background: "var(--color-sidebar-hover)" }}
@@ -200,39 +203,12 @@ export function MobileNav() {
                 ))}
               </ul>
 
-              {/* Bottom slot — Copilot trigger + git status (visual mocks; wired in Phase 7/8) */}
               <div
                 className="flex flex-col gap-2 px-3 pt-2 pb-3"
                 style={{ borderTop: "1px solid var(--color-border)" }}
               >
-                <button
-                  type="button"
-                  className="flex items-center gap-2 rounded-md border px-3 py-2 text-xs"
-                  style={{
-                    borderColor: "var(--color-border)",
-                    background: "var(--color-sidebar-hover)",
-                    color: "var(--color-editor-text)",
-                  }}
-                >
-                  <VscSparkle
-                    className="h-4 w-4 shrink-0"
-                    style={{ color: "var(--color-copilot-accent)" }}
-                    aria-hidden="true"
-                  />
-                  <span className="flex-1 truncate text-start">{t("copilot.triggerLabel")}</span>
-                  <span
-                    className="rounded px-1 text-[10px] tracking-wide opacity-70"
-                    style={{ background: "var(--color-sidebar-bg)" }}
-                  >
-                    AI
-                  </span>
-                </button>
-
-                <div className="flex items-center gap-2 px-1 text-[11px] opacity-80">
-                  <VscSourceControl className="h-3.5 w-3.5" aria-hidden="true" />
-                  <span>{t("statusbar.branch")}</span>
-                  <span className="ms-auto">↑1</span>
-                </div>
+                <CopilotPaneTrigger variant="expanded" />
+                <GitStatus hideSparkles />
               </div>
             </motion.aside>
           </>

@@ -9,6 +9,7 @@ import { ThemeInitScript } from "@/features/theme/components/ThemeInitScript";
 import { DEFAULT_THEME } from "@/features/theme/constants/themes";
 import { AppShell } from "@/features/layout/components/AppShell";
 import { TabsProvider } from "@/features/layout/context/TabsContext";
+import { CopilotProvider } from "@/features/layout/context/CopilotContext";
 import "@/styles/globals.css";
 
 const geistSans = Geist({
@@ -58,7 +59,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
         <NextIntlClientProvider>
           <ThemeProvider>
             <TabsProvider>
-              <AppShell>{children}</AppShell>
+              <CopilotProvider>
+                <AppShell>{children}</AppShell>
+              </CopilotProvider>
             </TabsProvider>
           </ThemeProvider>
         </NextIntlClientProvider>

@@ -1,9 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { VscSourceControl, VscSparkle } from "react-icons/vsc";
 import { Link, usePathname } from "@/i18n/navigation";
 import { PAGES, DECORATIVE_FILES } from "@/features/layout/constants/pages";
+import { CopilotPaneTrigger } from "@/features/layout/components/CopilotPane";
+import { GitStatus } from "@/features/layout/components/GitStatus";
 
 export function SidebarPanel() {
   const t = useTranslations("common");
@@ -70,53 +71,9 @@ export function SidebarPanel() {
         ))}
       </ul>
 
-      {/* Bottom slot — Copilot trigger + git status. Wired in Phase 7/8;
-          for now these are visual mocks that match the screenshots. */}
       <div className="flex flex-col gap-2 px-3 pt-2 pb-3">
-        <button
-          type="button"
-          className="flex items-center gap-2 rounded-md border px-3 py-2 text-xs transition-colors"
-          style={{
-            borderColor: "var(--color-border)",
-            background: "var(--color-sidebar-hover)",
-            color: "var(--color-editor-text)",
-          }}
-          data-placeholder="copilot-trigger"
-        >
-          <VscSparkle
-            className="h-4 w-4 shrink-0"
-            style={{ color: "var(--color-copilot-accent)" }}
-            aria-hidden="true"
-          />
-          <span className="flex-1 truncate text-start">{t("copilot.triggerLabel")}</span>
-          <span
-            className="rounded px-1 text-[10px] tracking-wide opacity-70"
-            style={{ background: "var(--color-sidebar-bg)" }}
-          >
-            AI
-          </span>
-        </button>
-
-        <div
-          className="flex items-center gap-2 px-1 text-[11px] opacity-80"
-          data-placeholder="git-status"
-        >
-          <VscSourceControl className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>{t("statusbar.branch")}</span>
-          <span className="ms-auto flex items-center gap-2 opacity-80">
-            <span className="flex items-center gap-0.5">
-              <span aria-hidden="true">↑</span>
-              <span>1</span>
-            </span>
-            <span
-              className="flex items-center gap-0.5"
-              style={{ color: "var(--color-copilot-accent)" }}
-            >
-              <span aria-hidden="true">✦</span>
-              <span>3</span>
-            </span>
-          </span>
-        </div>
+        <CopilotPaneTrigger />
+        <GitStatus />
       </div>
     </aside>
   );

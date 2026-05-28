@@ -1,0 +1,52 @@
+{
+  "app": {
+    "title": "Saeed Panahi — Portfolio",
+    "fileTitle": "saeed-panahi : portfolio"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "menu": {
+    "file": "File",
+    "edit": "Edit",
+    "view": "View",
+    "go": "Go",
+    "run": "Run",
+    "terminal": "Terminal",
+    "help": "Help",
+    "copilot": "Copilot"
+  },
+  "tabs": {
+    "close": "Close",
+    "welcome": "No tabs open — pick a file from the sidebar to begin."
+  },
+  "statusbar": {
+    "branch": "main",
+    "language": "TypeScript",
+    "encoding": "UTF-8",
+    "lineColumn": "Ln {line}, Col {column}",
+    "spaces": "Spaces: 2",
+    "notifications": "Notifications"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Color Theme",
+    "language": "Language",
+    "quickActions": "Quick Actions",
+    "keyboardShortcuts": "Keyboard Shortcuts"
+  },
+  "languages": {
+    "en": "English",
+    "fa": "فارسی"
+  },
+  "search": {
+    "placeholder": "Search files, commands, settings…"
+  },
+  "sidebar": {
+    "portfolio": "PORTFOLIO"
+  }
+}

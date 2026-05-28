@@ -1,0 +1,52 @@
+{
+  "app": {
+    "title": "سعید پناهی — نمونه‌کار",
+    "fileTitle": "saeed-panahi : portfolio"
+  },
+  "nav": {
+    "home": "خانه",
+    "about": "درباره من",
+    "skills": "مهارت‌ها",
+    "experience": "سوابق کاری",
+    "contact": "تماس"
+  },
+  "menu": {
+    "file": "فایل",
+    "edit": "ویرایش",
+    "view": "نمایش",
+    "go": "برو",
+    "run": "اجرا",
+    "terminal": "ترمینال",
+    "help": "راهنما",
+    "copilot": "کوپایلوت"
+  },
+  "tabs": {
+    "close": "بستن",
+    "welcome": "هیچ زبانه‌ای باز نیست — از نوار کناری یک فایل انتخاب کن."
+  },
+  "statusbar": {
+    "branch": "main",
+    "language": "TypeScript",
+    "encoding": "UTF-8",
+    "lineColumn": "خط {line}، ستون {column}",
+    "spaces": "فاصله‌ها: ۲",
+    "notifications": "اعلان‌ها"
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "theme": "تم رنگی",
+    "language": "زبان",
+    "quickActions": "اقدامات سریع",
+    "keyboardShortcuts": "میانبرهای صفحه‌کلید"
+  },
+  "languages": {
+    "en": "English",
+    "fa": "فارسی"
+  },
+  "search": {
+    "placeholder": "جستجوی فایل‌ها، دستورها و تنظیمات…"
+  },
+  "sidebar": {
+    "portfolio": "نمونه‌کار"
+  }
+}

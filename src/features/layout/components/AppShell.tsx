@@ -5,12 +5,12 @@ import { ActivityBar } from "./ActivityBar";
 import { SidebarPanel } from "./SidebarPanel";
 import { TabsBar } from "./TabsBar";
 import { StatusBar } from "./StatusBar";
+import { MobileNav } from "./MobileNav";
 
 /**
  * Top-level shell that renders the VS Code chrome around `children`.
- * Desktop (>= md): full TitleBar + MenuBar + ActivityBar + Sidebar + Tabs + StatusBar.
- * Mobile (< md): MobileNav is layered in Phase 5; for now the chrome simply
- * hides on small screens and the page content renders full-bleed.
+ * Desktop (>= md): TitleBar + MenuBar + ActivityBar + Sidebar + Tabs + StatusBar.
+ * Mobile (< md): MobileNav (simplified top bar + floating hamburger menu).
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -18,7 +18,10 @@ export function AppShell({ children }: { children: ReactNode }) {
       className="flex h-screen w-screen flex-col overflow-hidden"
       style={{ background: "var(--color-editor-bg)", color: "var(--color-editor-text)" }}
     >
-      {/* Desktop chrome — hidden below md, MobileNav (Phase 5) takes over */}
+      {/* Mobile chrome — top bar + floating hamburger; hidden on desktop */}
+      <MobileNav />
+
+      {/* Desktop chrome */}
       <div className="hidden md:block">
         <TitleBar />
         <MenuBar />

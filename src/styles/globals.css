@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-editor-bg, #1e1e1e);
+  color: var(--color-editor-text, #d4d4d4);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* RTL support: when dir="rtl" is on <html>, mirror logical layout for the VSCode shell. */
+[dir="rtl"] body {
+  font-family: var(--font-sans), Tahoma, Arial, sans-serif;
+}

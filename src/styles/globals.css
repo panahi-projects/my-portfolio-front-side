@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
-@import "./themes/dark-plus.css";
-@import "./themes/light-plus.css";
-@import "./themes/monokai.css";
-@import "./themes/solarized-dark.css";
-@import "./themes/github-dark.css";
+@import "./themes/default-dark.css";
+@import "./themes/rose-pine.css";
+@import "./themes/tokyo-night.css";
+@import "./themes/catppuccin.css";
+@import "./themes/nord.css";
+@import "./themes/gruvbox.css";
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Expose theme tokens as Tailwind colors so `bg-editor`, `text-sidebar` etc. work */
+  /* Expose theme tokens as Tailwind colors so `bg-editor`, `text-sidebar`, etc. work. */
   --color-titlebar: var(--color-titlebar-bg);
   --color-menubar: var(--color-menubar-bg);
   --color-activitybar: var(--color-activitybar-bg);
@@ -29,10 +30,10 @@
 body {
   background: var(--color-editor-bg);
   color: var(--color-editor-text);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, "Cascadia Mono", Menlo, monospace;
 }
 
-/* RTL: when dir="rtl" is on <html>, swap font family for Farsi-friendly fallback. */
+/* RTL: swap fallback fonts for Farsi-friendly stack. */
 [dir="rtl"] body {
   font-family: var(--font-sans), Tahoma, Arial, sans-serif;
 }

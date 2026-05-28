@@ -6,12 +6,12 @@ import {
   VscFiles,
   VscSearch,
   VscSourceControl,
-  VscExtensions,
-  VscAccount,
+  VscCloudDownload,
+  VscSparkle,
   VscSettingsGear,
 } from "react-icons/vsc";
 
-type ActivityKey = "explorer" | "search" | "git" | "extensions";
+type ActivityKey = "explorer" | "search" | "git" | "downloads" | "copilot";
 
 interface ActivityItem {
   key: ActivityKey;
@@ -23,7 +23,8 @@ const ITEMS: readonly ActivityItem[] = [
   { key: "explorer", label: "Explorer", Icon: VscFiles },
   { key: "search", label: "Search", Icon: VscSearch },
   { key: "git", label: "Source Control", Icon: VscSourceControl },
-  { key: "extensions", label: "Extensions", Icon: VscExtensions },
+  { key: "downloads", label: "Downloads", Icon: VscCloudDownload },
+  { key: "copilot", label: "Copilot", Icon: VscSparkle },
 ];
 
 export function ActivityBar() {
@@ -35,7 +36,7 @@ export function ActivityBar() {
       style={{ background: "var(--color-activitybar-bg)", color: "var(--color-activitybar-icon)" }}
       aria-label="Activity bar"
     >
-      <ul className="flex flex-col gap-1">
+      <ul className="flex flex-col">
         {ITEMS.map(({ key, label, Icon }) => {
           const isActive = active === key;
           return (
@@ -46,7 +47,7 @@ export function ActivityBar() {
                 title={label}
                 aria-label={label}
                 aria-pressed={isActive}
-                className="relative grid h-10 w-12 place-items-center transition-colors"
+                className="relative grid h-12 w-12 place-items-center transition-colors"
                 style={{
                   color: isActive
                     ? "var(--color-activitybar-active)"
@@ -56,7 +57,7 @@ export function ActivityBar() {
                 <Icon className="h-6 w-6" aria-hidden="true" />
                 {isActive ? (
                   <span
-                    className="absolute top-0 bottom-0 left-0 w-0.5"
+                    className="absolute inset-y-0 start-0 w-0.5"
                     style={{ background: "var(--color-activitybar-active)" }}
                     aria-hidden="true"
                   />
@@ -67,23 +68,13 @@ export function ActivityBar() {
         })}
       </ul>
 
-      <ul className="flex flex-col gap-1">
-        <li>
-          <button
-            type="button"
-            title="Account"
-            aria-label="Account"
-            className="grid h-10 w-12 place-items-center transition-colors hover:text-white"
-          >
-            <VscAccount className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </li>
+      <ul className="flex flex-col">
         <li>
           <button
             type="button"
             title="Settings"
             aria-label="Settings"
-            className="grid h-10 w-12 place-items-center transition-colors hover:text-white"
+            className="grid h-12 w-12 place-items-center transition-colors hover:text-white"
           >
             <VscSettingsGear className="h-6 w-6" aria-hidden="true" />
           </button>

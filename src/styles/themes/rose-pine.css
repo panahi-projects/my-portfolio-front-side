@@ -1,0 +1,31 @@
+/* Rosé Pine — soho-vibes dark with rose accents. */
+[data-theme="rose-pine"] {
+  --color-titlebar-bg: #191724;
+  --color-menubar-bg: #191724;
+  --color-activitybar-bg: #1f1d2e;
+  --color-activitybar-icon: #6e6a86;
+  --color-activitybar-active: #e0def4;
+  --color-sidebar-bg: #1f1d2e;
+  --color-sidebar-text: #e0def4;
+  --color-sidebar-hover: #26233a;
+  --color-editor-bg: #191724;
+  --color-editor-text: #e0def4;
+  --color-editor-line-highlight: #26233a;
+  --color-tabs-bg: #1f1d2e;
+  --color-tab-active-bg: #191724;
+  --color-tab-active-border: #eb6f92;
+  --color-statusbar-bg: #1f1d2e;
+  --color-statusbar-text: #ebbcba;
+  --color-accent: #eb6f92;
+  --color-accent-hover: #f5a6b9;
+  --color-border: #26233a;
+  --color-scrollbar: #524f67;
+
+  --color-copilot-bg: #191724;
+  --color-copilot-header-bg: #1f1d2e;
+  --color-copilot-border: #26233a;
+  --color-copilot-input-bg: #26233a;
+  --color-copilot-user-bubble: #403d52;
+  --color-copilot-ai-bubble: #26233a;
+  --color-copilot-accent: #eb6f92;
+}

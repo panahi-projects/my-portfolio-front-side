@@ -1,0 +1,31 @@
+/* Nord — arctic blue-gray with frost accents. */
+[data-theme="nord"] {
+  --color-titlebar-bg: #242933;
+  --color-menubar-bg: #242933;
+  --color-activitybar-bg: #2e3440;
+  --color-activitybar-icon: #4c566a;
+  --color-activitybar-active: #d8dee9;
+  --color-sidebar-bg: #2e3440;
+  --color-sidebar-text: #d8dee9;
+  --color-sidebar-hover: #3b4252;
+  --color-editor-bg: #2e3440;
+  --color-editor-text: #d8dee9;
+  --color-editor-line-highlight: #3b4252;
+  --color-tabs-bg: #242933;
+  --color-tab-active-bg: #2e3440;
+  --color-tab-active-border: #88c0d0;
+  --color-statusbar-bg: #242933;
+  --color-statusbar-text: #88c0d0;
+  --color-accent: #88c0d0;
+  --color-accent-hover: #a3d5e3;
+  --color-border: #3b4252;
+  --color-scrollbar: #4c566a;
+
+  --color-copilot-bg: #2e3440;
+  --color-copilot-header-bg: #242933;
+  --color-copilot-border: #3b4252;
+  --color-copilot-input-bg: #3b4252;
+  --color-copilot-user-bubble: #5e81ac;
+  --color-copilot-ai-bubble: #3b4252;
+  --color-copilot-accent: #88c0d0;
+}

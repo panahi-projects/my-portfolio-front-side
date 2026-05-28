@@ -1,6 +1,6 @@
 import type { ComponentType, SVGAttributes } from "react";
-import { SiReact, SiHtml5, SiTypescript, SiCss, SiMarkdown } from "react-icons/si";
-import { VscJson } from "react-icons/vsc";
+import { SiReact, SiHtml5, SiJavascript, SiTypescript, SiCss, SiMarkdown } from "react-icons/si";
+import { VscJson, VscFilePdf } from "react-icons/vsc";
 
 export type PageKey = "home" | "about" | "skills" | "experience" | "contact";
 
@@ -12,7 +12,7 @@ export interface PageMeta {
   filename: string;
   /** Route path under the current locale, without locale prefix. "/" for home. */
   href: string;
-  /** Display language tag (e.g., shown in StatusBar when this page is active). */
+  /** Display language tag (shown in StatusBar when this page is active). */
   language: string;
   /** Icon used in sidebar + tabs. */
   Icon: IconComponent;
@@ -70,12 +70,22 @@ export const PAGES: readonly PageMeta[] = [
   },
 ];
 
-/** README is decorative-only — not a route, but shown in the sidebar file list. */
-export const README_META = {
-  filename: "README.md",
-  Icon: SiMarkdown,
-  iconColor: "#519aba",
-} as const;
+/**
+ * Decorative file entries that appear in the sidebar tree alongside the
+ * navigable pages. They're not routes, so clicking does nothing — they exist
+ * to fill out the "filesystem" visual of a real editor.
+ */
+export interface DecorativeFile {
+  filename: string;
+  Icon: IconComponent;
+  iconColor: string;
+}
+
+export const DECORATIVE_FILES: readonly DecorativeFile[] = [
+  { filename: "projects.js", Icon: SiJavascript, iconColor: "#facc15" },
+  { filename: "README.md", Icon: SiMarkdown, iconColor: "#519aba" },
+  { filename: "Saeed_Panahi_Resume.pdf", Icon: VscFilePdf, iconColor: "#ec4144" },
+];
 
 /** Lookup a page by route path. Falls back to home. */
 export const findPageByPath = (path: string): PageMeta => {

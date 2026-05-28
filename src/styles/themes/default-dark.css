@@ -1,0 +1,31 @@
+/* Default Dark — portfolio's signature dark theme (deep navy + purple/pink accents). */
+[data-theme="default-dark"] {
+  --color-titlebar-bg: #15182a;
+  --color-menubar-bg: #15182a;
+  --color-activitybar-bg: #12152a;
+  --color-activitybar-icon: #6b6e8e;
+  --color-activitybar-active: #ffffff;
+  --color-sidebar-bg: #15182a;
+  --color-sidebar-text: #a4a7c0;
+  --color-sidebar-hover: #1d2138;
+  --color-editor-bg: #0e1020;
+  --color-editor-text: #c9cad6;
+  --color-editor-line-highlight: #1a1c33;
+  --color-tabs-bg: #15182a;
+  --color-tab-active-bg: #0e1020;
+  --color-tab-active-border: #4f9bff;
+  --color-statusbar-bg: #0a0c1a;
+  --color-statusbar-text: #7dd3fc;
+  --color-accent: #c084fc;
+  --color-accent-hover: #d8b4fe;
+  --color-border: #25283d;
+  --color-scrollbar: #2a2c45;
+
+  --color-copilot-bg: #15182a;
+  --color-copilot-header-bg: #0e1020;
+  --color-copilot-border: #25283d;
+  --color-copilot-input-bg: #1c1e35;
+  --color-copilot-user-bubble: #2a2356;
+  --color-copilot-ai-bubble: #1c1e35;
+  --color-copilot-accent: #c084fc;
+}

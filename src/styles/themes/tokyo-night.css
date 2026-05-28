@@ -1,0 +1,31 @@
+/* Tokyo Night — deep blue with cyan/purple accents. */
+[data-theme="tokyo-night"] {
+  --color-titlebar-bg: #16161e;
+  --color-menubar-bg: #16161e;
+  --color-activitybar-bg: #16161e;
+  --color-activitybar-icon: #565f89;
+  --color-activitybar-active: #c0caf5;
+  --color-sidebar-bg: #1a1b26;
+  --color-sidebar-text: #a9b1d6;
+  --color-sidebar-hover: #232433;
+  --color-editor-bg: #1a1b26;
+  --color-editor-text: #c0caf5;
+  --color-editor-line-highlight: #232433;
+  --color-tabs-bg: #16161e;
+  --color-tab-active-bg: #1a1b26;
+  --color-tab-active-border: #7aa2f7;
+  --color-statusbar-bg: #16161e;
+  --color-statusbar-text: #7aa2f7;
+  --color-accent: #7aa2f7;
+  --color-accent-hover: #a9c1ff;
+  --color-border: #292e42;
+  --color-scrollbar: #565f89;
+
+  --color-copilot-bg: #1a1b26;
+  --color-copilot-header-bg: #16161e;
+  --color-copilot-border: #292e42;
+  --color-copilot-input-bg: #232433;
+  --color-copilot-user-bubble: #3d59a1;
+  --color-copilot-ai-bubble: #232433;
+  --color-copilot-accent: #7aa2f7;
+}

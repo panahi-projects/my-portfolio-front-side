@@ -1,9 +1,10 @@
 export const THEME_IDS = [
-  "dark-plus",
-  "light-plus",
-  "monokai",
-  "solarized-dark",
-  "github-dark",
+  "default-dark",
+  "rose-pine",
+  "tokyo-night",
+  "catppuccin",
+  "nord",
+  "gruvbox",
 ] as const;
 
 export type ThemeId = (typeof THEME_IDS)[number];
@@ -12,6 +13,7 @@ export interface ThemeMeta {
   id: ThemeId;
   name: string;
   description: string;
+  emoji: string;
   isDark: boolean;
   swatch: {
     background: string;
@@ -22,43 +24,56 @@ export interface ThemeMeta {
 
 export const THEMES: readonly ThemeMeta[] = [
   {
-    id: "dark-plus",
-    name: "Dark+ (Default Dark)",
-    description: "Classic VS Code dark",
+    id: "default-dark",
+    name: "Default Dark",
+    description: "Deep navy with purple & cyan accents",
+    emoji: "💜",
     isDark: true,
-    swatch: { background: "#1e1e1e", foreground: "#d4d4d4", accent: "#007acc" },
+    swatch: { background: "#0e1020", foreground: "#c9cad6", accent: "#c084fc" },
   },
   {
-    id: "light-plus",
-    name: "Light+ (Default Light)",
-    description: "Classic VS Code light",
-    isDark: false,
-    swatch: { background: "#ffffff", foreground: "#1f1f1f", accent: "#007acc" },
+    id: "rose-pine",
+    name: "Rosé Pine",
+    description: "Soho-vibe dark with rose accents",
+    emoji: "🌹",
+    isDark: true,
+    swatch: { background: "#191724", foreground: "#e0def4", accent: "#eb6f92" },
   },
   {
-    id: "monokai",
-    name: "Monokai",
-    description: "Dark with vibrant greens & pinks",
+    id: "tokyo-night",
+    name: "Tokyo Night",
+    description: "Deep blue with cyan & purple accents",
+    emoji: "🌃",
     isDark: true,
-    swatch: { background: "#272822", foreground: "#f8f8f2", accent: "#f92672" },
+    swatch: { background: "#1a1b26", foreground: "#c0caf5", accent: "#7aa2f7" },
   },
   {
-    id: "solarized-dark",
-    name: "Solarized Dark",
-    description: "Warm dark with teal accent",
+    id: "catppuccin",
+    name: "Catppuccin",
+    description: "Mocha — warm pastels on deep mauve",
+    emoji: "🐱",
     isDark: true,
-    swatch: { background: "#002b36", foreground: "#93a1a1", accent: "#2aa198" },
+    swatch: { background: "#1e1e2e", foreground: "#cdd6f4", accent: "#cba6f7" },
   },
   {
-    id: "github-dark",
-    name: "GitHub Dark",
-    description: "GitHub-inspired dark UI",
+    id: "nord",
+    name: "Nord",
+    description: "Arctic blue-gray with frost accents",
+    emoji: "🧊",
     isDark: true,
-    swatch: { background: "#0d1117", foreground: "#c9d1d9", accent: "#58a6ff" },
+    swatch: { background: "#2e3440", foreground: "#d8dee9", accent: "#88c0d0" },
+  },
+  {
+    id: "gruvbox",
+    name: "Gruvbox",
+    description: "Warm sepia & retro orange",
+    emoji: "🔥",
+    isDark: true,
+    swatch: { background: "#282828", foreground: "#ebdbb2", accent: "#fb4934" },
   },
 ];
 
-export const DEFAULT_THEME: ThemeId = "dark-plus";
+export const DEFAULT_THEME: ThemeId = "default-dark";
 export const THEME_STORAGE_KEY = "portfolio-theme";
 
 export const isThemeId = (value: unknown): value is ThemeId =>

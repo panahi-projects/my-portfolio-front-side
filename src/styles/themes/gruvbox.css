@@ -1,0 +1,31 @@
+/* Gruvbox (Dark) — warm sepia & retro orange. */
+[data-theme="gruvbox"] {
+  --color-titlebar-bg: #1d2021;
+  --color-menubar-bg: #1d2021;
+  --color-activitybar-bg: #282828;
+  --color-activitybar-icon: #665c54;
+  --color-activitybar-active: #ebdbb2;
+  --color-sidebar-bg: #282828;
+  --color-sidebar-text: #ebdbb2;
+  --color-sidebar-hover: #3c3836;
+  --color-editor-bg: #282828;
+  --color-editor-text: #ebdbb2;
+  --color-editor-line-highlight: #3c3836;
+  --color-tabs-bg: #1d2021;
+  --color-tab-active-bg: #282828;
+  --color-tab-active-border: #fabd2f;
+  --color-statusbar-bg: #1d2021;
+  --color-statusbar-text: #fabd2f;
+  --color-accent: #fb4934;
+  --color-accent-hover: #fc5e4a;
+  --color-border: #3c3836;
+  --color-scrollbar: #504945;
+
+  --color-copilot-bg: #282828;
+  --color-copilot-header-bg: #1d2021;
+  --color-copilot-border: #3c3836;
+  --color-copilot-input-bg: #3c3836;
+  --color-copilot-user-bubble: #d65d0e;
+  --color-copilot-ai-bubble: #3c3836;
+  --color-copilot-accent: #fabd2f;
+}

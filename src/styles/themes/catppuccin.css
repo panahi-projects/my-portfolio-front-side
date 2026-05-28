@@ -1,0 +1,31 @@
+/* Catppuccin (Mocha) — warm pastels on deep mauve. */
+[data-theme="catppuccin"] {
+  --color-titlebar-bg: #11111b;
+  --color-menubar-bg: #11111b;
+  --color-activitybar-bg: #181825;
+  --color-activitybar-icon: #6c7086;
+  --color-activitybar-active: #cdd6f4;
+  --color-sidebar-bg: #181825;
+  --color-sidebar-text: #cdd6f4;
+  --color-sidebar-hover: #1e1e2e;
+  --color-editor-bg: #1e1e2e;
+  --color-editor-text: #cdd6f4;
+  --color-editor-line-highlight: #313244;
+  --color-tabs-bg: #181825;
+  --color-tab-active-bg: #1e1e2e;
+  --color-tab-active-border: #cba6f7;
+  --color-statusbar-bg: #11111b;
+  --color-statusbar-text: #cba6f7;
+  --color-accent: #cba6f7;
+  --color-accent-hover: #e0c5ff;
+  --color-border: #313244;
+  --color-scrollbar: #45475a;
+
+  --color-copilot-bg: #1e1e2e;
+  --color-copilot-header-bg: #181825;
+  --color-copilot-border: #313244;
+  --color-copilot-input-bg: #313244;
+  --color-copilot-user-bubble: #45475a;
+  --color-copilot-ai-bubble: #313244;
+  --color-copilot-accent: #cba6f7;
+}

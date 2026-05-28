@@ -1,6 +1,8 @@
 {
   "app": {
-    "title": "Saeed Panahi — Portfolio",
+    "title": "Saeed's Portfolio",
+    "name": "Saeed Panahi",
+    "repo": "saeed-panahi",
     "fileTitle": "saeed-panahi : portfolio"
   },
   "nav": {
@@ -47,6 +49,16 @@
     "placeholder": "Search files, commands, settings…"
   },
   "sidebar": {
-    "portfolio": "PORTFOLIO"
+    "portfolio": "PORTFOLIO",
+    "explorer": "EXPLORER"
+  },
+  "copilot": {
+    "title": "Saeed's Copilot",
+    "subtitle": "Saeed's AI Assistant",
+    "triggerLabel": "Saeed's Copilot",
+    "placeholder": "Ask Copilot anything about Saeed…",
+    "welcome": "Hi! I'm Saeed's Copilot. Ask me anything about his projects, skills, experience, or achievements.",
+    "send": "Send",
+    "close": "Close Copilot"
   }
 }

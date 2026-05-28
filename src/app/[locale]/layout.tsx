@@ -7,6 +7,7 @@ import { routing, isRtl } from "@/i18n/routing";
 import { ThemeProvider } from "@/features/theme/context/ThemeContext";
 import { ThemeInitScript } from "@/features/theme/components/ThemeInitScript";
 import { DEFAULT_THEME } from "@/features/theme/constants/themes";
+import { AppShell } from "@/features/layout/components/AppShell";
 import "@/styles/globals.css";
 
 const geistSans = Geist({
@@ -54,7 +55,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
       </head>
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <AppShell>{children}</AppShell>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

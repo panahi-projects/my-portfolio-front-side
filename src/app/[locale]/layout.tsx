@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/features/theme/context/ThemeContext";
 import { ThemeInitScript } from "@/features/theme/components/ThemeInitScript";
 import { DEFAULT_THEME } from "@/features/theme/constants/themes";
 import { AppShell } from "@/features/layout/components/AppShell";
+import { TabsProvider } from "@/features/layout/context/TabsContext";
 import "@/styles/globals.css";
 
 const geistSans = Geist({
@@ -56,7 +57,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>
           <ThemeProvider>
-            <AppShell>{children}</AppShell>
+            <TabsProvider>
+              <AppShell>{children}</AppShell>
+            </TabsProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

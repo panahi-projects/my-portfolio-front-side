@@ -1,0 +1,31 @@
+/* Dark+ — VSCode default dark */
+[data-theme="dark-plus"] {
+  --color-titlebar-bg: #3c3c3c;
+  --color-menubar-bg: #333333;
+  --color-activitybar-bg: #333333;
+  --color-activitybar-icon: #858585;
+  --color-activitybar-active: #ffffff;
+  --color-sidebar-bg: #252526;
+  --color-sidebar-text: #cccccc;
+  --color-sidebar-hover: #2a2d2e;
+  --color-editor-bg: #1e1e1e;
+  --color-editor-text: #d4d4d4;
+  --color-editor-line-highlight: #2a2d2e;
+  --color-tabs-bg: #2d2d2d;
+  --color-tab-active-bg: #1e1e1e;
+  --color-tab-active-border: #007acc;
+  --color-statusbar-bg: #007acc;
+  --color-statusbar-text: #ffffff;
+  --color-accent: #007acc;
+  --color-accent-hover: #1f88c2;
+  --color-border: #1e1e1e;
+  --color-scrollbar: #424242;
+
+  --color-copilot-bg: #1e1e1e;
+  --color-copilot-header-bg: #252526;
+  --color-copilot-border: #2a2d2e;
+  --color-copilot-input-bg: #2d2d2d;
+  --color-copilot-user-bubble: #094771;
+  --color-copilot-ai-bubble: #2a2d2e;
+  --color-copilot-accent: #007acc;
+}

@@ -1,0 +1,31 @@
+/* Solarized Dark */
+[data-theme="solarized-dark"] {
+  --color-titlebar-bg: #073642;
+  --color-menubar-bg: #073642;
+  --color-activitybar-bg: #073642;
+  --color-activitybar-icon: #586e75;
+  --color-activitybar-active: #b58900;
+  --color-sidebar-bg: #00212b;
+  --color-sidebar-text: #93a1a1;
+  --color-sidebar-hover: #073642;
+  --color-editor-bg: #002b36;
+  --color-editor-text: #93a1a1;
+  --color-editor-line-highlight: #073642;
+  --color-tabs-bg: #073642;
+  --color-tab-active-bg: #002b36;
+  --color-tab-active-border: #2aa198;
+  --color-statusbar-bg: #2aa198;
+  --color-statusbar-text: #002b36;
+  --color-accent: #2aa198;
+  --color-accent-hover: #268bd2;
+  --color-border: #002b36;
+  --color-scrollbar: #586e75;
+
+  --color-copilot-bg: #002b36;
+  --color-copilot-header-bg: #073642;
+  --color-copilot-border: #00212b;
+  --color-copilot-input-bg: #073642;
+  --color-copilot-user-bubble: #268bd2;
+  --color-copilot-ai-bubble: #073642;
+  --color-copilot-accent: #2aa198;
+}

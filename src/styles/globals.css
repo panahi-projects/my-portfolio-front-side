@@ -1,17 +1,51 @@
 @import "tailwindcss";
 
+@import "./themes/dark-plus.css";
+@import "./themes/light-plus.css";
+@import "./themes/monokai.css";
+@import "./themes/solarized-dark.css";
+@import "./themes/github-dark.css";
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Expose theme tokens as Tailwind colors so `bg-editor`, `text-sidebar` etc. work */
+  --color-titlebar: var(--color-titlebar-bg);
+  --color-menubar: var(--color-menubar-bg);
+  --color-activitybar: var(--color-activitybar-bg);
+  --color-activitybar-fg: var(--color-activitybar-icon);
+  --color-activitybar-fg-active: var(--color-activitybar-active);
+  --color-sidebar: var(--color-sidebar-bg);
+  --color-sidebar-fg: var(--color-sidebar-text);
+  --color-editor: var(--color-editor-bg);
+  --color-editor-fg: var(--color-editor-text);
+  --color-tabs: var(--color-tabs-bg);
+  --color-tab-active: var(--color-tab-active-bg);
+  --color-statusbar: var(--color-statusbar-bg);
+  --color-statusbar-fg: var(--color-statusbar-text);
 }
 
 body {
-  background: var(--color-editor-bg, #1e1e1e);
-  color: var(--color-editor-text, #d4d4d4);
+  background: var(--color-editor-bg);
+  color: var(--color-editor-text);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* RTL support: when dir="rtl" is on <html>, mirror logical layout for the VSCode shell. */
+/* RTL: when dir="rtl" is on <html>, swap font family for Farsi-friendly fallback. */
 [dir="rtl"] body {
   font-family: var(--font-sans), Tahoma, Arial, sans-serif;
+}
+
+/* Custom scrollbar matching active theme */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar);
+  border-radius: 5px;
 }

@@ -4,6 +4,9 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing, isRtl } from "@/i18n/routing";
+import { ThemeProvider } from "@/features/theme/context/ThemeContext";
+import { ThemeInitScript } from "@/features/theme/components/ThemeInitScript";
+import { DEFAULT_THEME } from "@/features/theme/constants/themes";
 import "@/styles/globals.css";
 
 const geistSans = Geist({
@@ -43,10 +46,16 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
     <html
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
+      data-theme={DEFAULT_THEME}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <ThemeInitScript />
+      </head>
       <body className="flex min-h-full flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-16 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-17 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 17 — Fill all i18n keys.
+**Next up:** Phase 18 — RTL layout for FA.
 
 ---
 
@@ -133,14 +133,11 @@ src/
 | 14 | Skills page | `feat(skills): implement Skills page with animated proficiency bars and category grid` | `skills/page.tsx` (server) fetches `getSkillsData()` → renders `SkillsView` (async server); green JSON-comment banner (`skills.banner`), "Skills" heading + JSON subtitle (`skills.jsonSubtitle`), 2-col category grid (accent uppercase heading + divider), each skill row = client `SkillBar` (name · animated fill · %); `SkillBar` uses `framer-motion useInView({once})` to fill 0→proficiency on scroll-in (logical `start`-anchored, RTL-safe), `role=progressbar` a11y; vibrant cycling palette in `skills/constants/colors.ts`; added `skills.{banner,jsonSubtitle}` i18n keys (EN+FA). Verified via build static prerender. |
 | 15 | Experience page | `feat(experience): implement Experience page with vertical timeline and tech stacks` | `experience/page.tsx` (server) fetches `getExperienceData()` → renders `ExperienceView` (async server); green TS-comment banner (`experience.banner`), "Experience" heading + `interface Career extends Timeline {}` subtitle (`experience.interfaceLine`); vertical timeline with single logical `start`-anchored spine + per-entry node (filled = `current`, ring = past), `formatMonth("YYYY-MM"→"Mon YYYY")`, `present` i18n for current end; each entry: date range, role, `@ company · location`, achievements paragraph, tech-stack chips; added `experience.{banner,interfaceLine,present}` i18n keys (EN+FA). Verified via build static prerender. |
 | 16 | Contact page | `feat(contact): implement Contact page with social links and validated message form` | `contact/page.tsx` (server) fetches `getContactData()` → renders `ContactView` (async server); green CSS-comment banner (`contact.banner`), "Contact" heading + `// open to work…` subtitle; 2-col grid — left FIND ME ON cards (reuses home `getIcon`, per-slug brand colors, handle + chevron), right `ContactForm` (client); `ContactForm` = react-hook-form + `zodResolver` (zod v4 `z.email()`), localized error messages, `// FIELD *` labels, `→ send_message()` button, mock 700ms submit → success toast auto-hidden via `sent`-watching effect (no ref → lint-clean); added `contact.{banner,findMeOn,sendMessage,form.*,footer}` i18n keys (EN+FA). Verified via build static prerender. |
+| 17 | Fill all i18n keys | `feat(i18n): complete EN and FA translation keys for all pages and UI components` | Audited every `t()`/`getTranslations` reference + ran an EN/FA key-parity script across all 6 namespaces (all in parity). Localized previously hardcoded chrome strings (aria-labels + tooltips) in ActivityBar, MenuBar, SidebarPanel, TabsBar, StatusBar, GitStatus; ActivityBar item labels now data-driven via `t(\`activitybar.${key}\`)`; added `common.{a11y.*, activitybar.*, statusbar.errors/warnings/gitBranch/syncStatus/copilot/copilotLabel/commitsAhead/pending}` (EN+FA). Page **content** (bios, skill names, experience copy) stays English in the mock/service layer by design — this phase covers UI keys. Verified: parity script clean + build prerenders all 13 routes (no missing-key throws). |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 17 — Fill all i18n keys
-**Suggested commit:** `feat(i18n): complete EN and FA translation keys for all pages and UI components`
-Sweep all `useTranslations` / `getTranslations` calls, ensure every key exists in both `en/` and `fa/` namespaces, no hardcoded strings.
 
 ### Phase 18 — RTL layout for FA
 **Suggested commit:** `feat(i18n): add RTL layout mirroring for Farsi locale`

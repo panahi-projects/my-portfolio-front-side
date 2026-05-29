@@ -27,22 +27,22 @@ export function StatusBar() {
         background: "var(--color-statusbar-bg)",
         color: "var(--color-statusbar-text)",
       }}
-      aria-label="Status bar"
+      aria-label={t("a11y.statusBar")}
     >
       <div className="flex items-center gap-4 px-3">
-        <span className="flex items-center gap-1" title="Errors">
+        <span className="flex items-center gap-1" title={tStatus("errors")}>
           <VscError className="h-3.5 w-3.5" aria-hidden="true" />
           <span>0</span>
         </span>
-        <span className="flex items-center gap-1" title="Warnings">
+        <span className="flex items-center gap-1" title={tStatus("warnings")}>
           <VscWarning className="h-3.5 w-3.5" aria-hidden="true" />
           <span>0</span>
         </span>
-        <span className="flex items-center gap-1" title="Git branch">
+        <span className="flex items-center gap-1" title={tStatus("gitBranch")}>
           <VscSourceControl className="h-3.5 w-3.5" aria-hidden="true" />
           <span>{tStatus("branch")}</span>
         </span>
-        <span className="flex items-center gap-1" title="Sync status">
+        <span className="flex items-center gap-1" title={tStatus("syncStatus")}>
           <VscSync className="h-3.5 w-3.5" aria-hidden="true" />
           <span>{t("app.title")}</span>
         </span>
@@ -51,9 +51,9 @@ export function StatusBar() {
       <div className="flex flex-1" />
 
       <div className="flex items-center gap-4 px-3">
-        <span className="flex items-center gap-1" title="GitHub Copilot">
+        <span className="flex items-center gap-1" title={tStatus("copilot")}>
           <VscCopilot className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>Copilot</span>
+          <span>{tStatus("copilotLabel")}</span>
         </span>
         <span>{active.language}</span>
         <span>{tStatus("encoding")}</span>

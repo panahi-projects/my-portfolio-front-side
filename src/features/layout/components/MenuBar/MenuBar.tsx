@@ -8,13 +8,14 @@ type MenuKey = (typeof MENU_KEYS)[number];
 
 export function MenuBar() {
   const t = useTranslations("common.menu");
+  const tCommon = useTranslations("common");
   const [openKey, setOpenKey] = useState<MenuKey | null>(null);
 
   return (
     <nav
       className="flex h-7 shrink-0 items-center gap-1 px-2 text-xs select-none"
       style={{ background: "var(--color-menubar-bg)", color: "var(--color-sidebar-text)" }}
-      aria-label="Menu bar"
+      aria-label={tCommon("a11y.menuBar")}
     >
       {MENU_KEYS.map((key) => {
         const isOpen = openKey === key;

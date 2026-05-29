@@ -28,7 +28,7 @@ export function TabsBar() {
         className="flex h-9 items-stretch"
         style={{ background: "var(--color-tabs-bg)", color: "var(--color-sidebar-text)" }}
         role="tablist"
-        aria-label="Open editor tabs"
+        aria-label={t("a11y.openTabs")}
       >
         <div className="flex min-w-0 flex-1 overflow-x-auto">
           {openTabs.length === 0 ? (

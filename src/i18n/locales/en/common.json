@@ -32,7 +32,30 @@
     "encoding": "UTF-8",
     "lineColumn": "Ln {line}, Col {column}",
     "spaces": "Spaces: 2",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "errors": "Errors",
+    "warnings": "Warnings",
+    "gitBranch": "Git branch",
+    "syncStatus": "Sync status",
+    "copilot": "GitHub Copilot",
+    "copilotLabel": "Copilot",
+    "commitsAhead": "Commits ahead",
+    "pending": "Pending"
+  },
+  "a11y": {
+    "activityBar": "Activity bar",
+    "menuBar": "Menu bar",
+    "fileExplorer": "File explorer",
+    "statusBar": "Status bar",
+    "openTabs": "Open editor tabs",
+    "gitStatus": "Git status"
+  },
+  "activitybar": {
+    "explorer": "Explorer",
+    "search": "Search",
+    "git": "Source Control",
+    "downloads": "Downloads",
+    "copilot": "Copilot"
   },
   "settings": {
     "title": "Settings",

@@ -32,7 +32,30 @@
     "encoding": "UTF-8",
     "lineColumn": "خط {line}، ستون {column}",
     "spaces": "فاصله‌ها: ۲",
-    "notifications": "اعلان‌ها"
+    "notifications": "اعلان‌ها",
+    "errors": "خطاها",
+    "warnings": "هشدارها",
+    "gitBranch": "شاخه گیت",
+    "syncStatus": "وضعیت همگام‌سازی",
+    "copilot": "گیت‌هاب کوپایلوت",
+    "copilotLabel": "کوپایلوت",
+    "commitsAhead": "کامیت‌های جلوتر",
+    "pending": "در انتظار"
+  },
+  "a11y": {
+    "activityBar": "نوار فعالیت",
+    "menuBar": "نوار منو",
+    "fileExplorer": "کاوشگر فایل",
+    "statusBar": "نوار وضعیت",
+    "openTabs": "زبانه‌های باز",
+    "gitStatus": "وضعیت گیت"
+  },
+  "activitybar": {
+    "explorer": "کاوشگر",
+    "search": "جستجو",
+    "git": "کنترل نسخه",
+    "downloads": "دانلودها",
+    "copilot": "کوپایلوت"
   },
   "settings": {
     "title": "تنظیمات",

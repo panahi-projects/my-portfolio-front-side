@@ -23,24 +23,25 @@ export function GitStatus({
   className = "",
 }: GitStatusProps) {
   const t = useTranslations("common.statusbar");
+  const tCommon = useTranslations("common");
   const label = branch ?? t("branch");
 
   return (
     <div
       className={`flex items-center gap-2 px-1 text-[11px] opacity-80 ${className}`}
-      aria-label="Git status"
+      aria-label={tCommon("a11y.gitStatus")}
     >
       <VscSourceControl className="h-3.5 w-3.5" aria-hidden="true" />
       <span>{label}</span>
       <span className="ms-auto flex items-center gap-2">
-        <span className="flex items-center gap-0.5" title="Commits ahead">
+        <span className="flex items-center gap-0.5" title={t("commitsAhead")}>
           <span aria-hidden="true">↑</span>
           <span>{ahead}</span>
         </span>
         {hideSparkles ? null : (
           <span
             className="flex items-center gap-0.5"
-            title="Pending"
+            title={t("pending")}
             style={{ color: "var(--color-copilot-accent)" }}
           >
             <span aria-hidden="true">✦</span>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ComponentType, SVGAttributes } from "react";
+import { useTranslations } from "next-intl";
 import {
   VscFiles,
   VscSearch,
@@ -16,19 +17,19 @@ type ActivityKey = "explorer" | "search" | "git" | "downloads" | "copilot";
 
 interface ActivityItem {
   key: ActivityKey;
-  label: string;
   Icon: ComponentType<SVGAttributes<SVGElement>>;
 }
 
 const ITEMS: readonly ActivityItem[] = [
-  { key: "explorer", label: "Explorer", Icon: VscFiles },
-  { key: "search", label: "Search", Icon: VscSearch },
-  { key: "git", label: "Source Control", Icon: VscSourceControl },
-  { key: "downloads", label: "Downloads", Icon: VscCloudDownload },
-  { key: "copilot", label: "Copilot", Icon: VscSparkle },
+  { key: "explorer", Icon: VscFiles },
+  { key: "search", Icon: VscSearch },
+  { key: "git", Icon: VscSourceControl },
+  { key: "downloads", Icon: VscCloudDownload },
+  { key: "copilot", Icon: VscSparkle },
 ];
 
 export function ActivityBar() {
+  const t = useTranslations("common");
   const [active, setActive] = useState<ActivityKey>("explorer");
   const { toggle: toggleSettings, isOpen: settingsOpen } = useSettings();
 
@@ -36,11 +37,12 @@ export function ActivityBar() {
     <aside
       className="flex w-12 shrink-0 flex-col items-center justify-between py-2"
       style={{ background: "var(--color-activitybar-bg)", color: "var(--color-activitybar-icon)" }}
-      aria-label="Activity bar"
+      aria-label={t("a11y.activityBar")}
     >
       <ul className="flex flex-col">
-        {ITEMS.map(({ key, label, Icon }) => {
+        {ITEMS.map(({ key, Icon }) => {
           const isActive = active === key;
+          const label = t(`activitybar.${key}`);
           return (
             <li key={key}>
               <button
@@ -75,8 +77,8 @@ export function ActivityBar() {
           <button
             type="button"
             onClick={toggleSettings}
-            title="Settings"
-            aria-label="Settings"
+            title={t("settings.title")}
+            aria-label={t("settings.title")}
             aria-pressed={settingsOpen}
             className="grid h-12 w-12 place-items-center transition-colors hover:text-white"
             style={{ color: settingsOpen ? "var(--color-activitybar-active)" : undefined }}

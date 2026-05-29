@@ -63,6 +63,9 @@
     "clear": "Clear conversation",
     "you": "You",
     "assistant": "Copilot",
+    "workspace": "Workspace",
+    "path": "~/copilot",
+    "disclaimer": "AI can make mistakes · Contact Saeed directly for important info",
     "suggestions": [
       "Tell me about Saeed?",
       "What projects has Saeed built?",

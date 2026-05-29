@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-8 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-9 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 9 — Copilot Pane (mobile).
+**Next up:** Phase 10 — Settings panel.
 
 ---
 
@@ -125,21 +125,11 @@ src/
 | — | UI alignment with screenshots (out-of-band) | `style(ui): align chrome with reference screenshots (.claude/screenshots/*)` | Replaced 5 themes → 6 trendy themes; removed window action buttons; swapped Account+Extensions → CloudDownload+Sparkle; added decorative sidebar files + accent stripe; breadcrumb on its own strip; mobile drawer flipped to start side; added `app.{name,repo}` + `sidebar.explorer` + `copilot.*` i18n keys |
 | 7 | Git status + Copilot trigger | `feat(sidebar): add git branch status indicator and Copilot trigger button` | `CopilotContext` (just `isOpen` for now), `useCopilotPane`, animated `CopilotPaneTrigger`, `GitStatus` component, mobile sparkle button now toggles Copilot |
 | 8 | Copilot Pane (desktop) | `feat(copilot): implement desktop Copilot Pane with mock chat interface and panel state persistence` | `CopilotContext` extended with `messages`/`isThinking`/`sendMessage`/`clearMessages` + `portfolio-copilot-messages` persistence; `mockReplies.ts` (10 replies); `CopilotPane` (slide-in 35% panel, welcome + 6 suggestion chips, auto-scroll, thinking dots), `CopilotChatMessage`, `CopilotChatInput`; `AppShell` editor column split into `<main>` + pane (md:+); added `copilot.{clear,you,assistant,suggestions}` i18n keys (EN+FA) |
+| 9 | Copilot Pane (mobile) | `feat(copilot): add mobile full-screen variant of Copilot Pane with swipe dismiss` | `CopilotPaneMobile` (approach b — `flex md:hidden` full-screen overlay rendered in `AppShell`); slides up + swipe-down-to-dismiss via `useDragControls` (header is the drag handle so list still scrolls), body-scroll lock; mirrors MobileNav top bar + identity row + workspace chip + disclaimer; reuses `CopilotChatMessage`/`CopilotChatInput`; added `copilot.{workspace,path,disclaimer}` i18n keys (EN+FA) |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 9 — Copilot Pane (mobile)
-**Reference:** `.claude/screenshots/copilot-mobile.png`
-**Suggested commit:** `feat(copilot): add mobile bottom-sheet variant of Copilot Pane with swipe dismiss`
-
-- Mobile is a **full-screen overlay** (per screenshot, not a partial bottom sheet).
-- Top bar: hamburger / `~/copilot` text / sparkle + `×` icons (mimics MobileNav top bar style).
-- Reuse `CopilotChatMessage` + `CopilotChatInput` from Phase 8.
-- Swipe-down-to-dismiss: framer-motion `drag="y"` + `dragConstraints={{ top: 0, bottom: 0 }}` + on `onDragEnd` if `info.offset.y > 100` call `close()`.
-- Two ways to switch behavior: (a) one component with `useBreakpoint` deciding layout; (b) separate `CopilotPaneDesktop` + `CopilotPaneMobile` rendered behind `hidden md:flex` / `flex md:hidden`. Approach (b) is cleaner.
-- MobileNav's sparkle button already calls `useCopilotPane().toggle()` — wired in Phase 7.
 
 ### Phase 10 — Settings panel
 **References:** `.claude/screenshots/settings-desktop.png`, `settings-mobile.png`

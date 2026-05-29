@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -12,16 +13,6 @@ import { AppShell } from "@/features/layout/components/AppShell";
 import { TabsProvider } from "@/features/layout/context/TabsContext";
 import { CopilotProvider } from "@/features/layout/context/CopilotContext";
 import "@/styles/globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -51,7 +42,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
       lang={locale}
       dir={isRtl(locale) ? "rtl" : "ltr"}
       data-theme={DEFAULT_THEME}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <head>
         <ThemeInitScript />

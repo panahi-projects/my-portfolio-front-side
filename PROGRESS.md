@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-18 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-19 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green. On branch `main`.
 
-**Next up:** Phase 19 — Layout component tests.
+**Next up:** Phase 20 — Theme + settings tests.
 
 ---
 
@@ -135,21 +135,11 @@ src/
 | 16 | Contact page | `feat(contact): implement Contact page with social links and validated message form` | `contact/page.tsx` (server) fetches `getContactData()` → renders `ContactView` (async server); green CSS-comment banner (`contact.banner`), "Contact" heading + `// open to work…` subtitle; 2-col grid — left FIND ME ON cards (reuses home `getIcon`, per-slug brand colors, handle + chevron), right `ContactForm` (client); `ContactForm` = react-hook-form + `zodResolver` (zod v4 `z.email()`), localized error messages, `// FIELD *` labels, `→ send_message()` button, mock 700ms submit → success toast auto-hidden via `sent`-watching effect (no ref → lint-clean); added `contact.{banner,findMeOn,sendMessage,form.*,footer}` i18n keys (EN+FA). Verified via build static prerender. |
 | 17 | Fill all i18n keys | `feat(i18n): complete EN and FA translation keys for all pages and UI components` | Audited every `t()`/`getTranslations` reference + ran an EN/FA key-parity script across all 6 namespaces (all in parity). Localized previously hardcoded chrome strings (aria-labels + tooltips) in ActivityBar, MenuBar, SidebarPanel, TabsBar, StatusBar, GitStatus; ActivityBar item labels now data-driven via `t(\`activitybar.${key}\`)`; added `common.{a11y.*, activitybar.*, statusbar.errors/warnings/gitBranch/syncStatus/copilot/copilotLabel/commitsAhead/pending}` (EN+FA). Page **content** (bios, skill names, experience copy) stays English in the mock/service layer by design — this phase covers UI keys. Verified: parity script clean + build prerenders all 13 routes (no missing-key throws). |
 | 18 | RTL layout for FA | `feat(i18n): add RTL layout mirroring for Farsi locale` | Audited physical-direction CSS — codebase was already almost fully logical. Fixes: MenuBar dropdown `left-0`→`start-0`; chat bubble corner `borderTop{Left,Right}Radius`→logical `borderStart{Start,End}Radius`. Caught the real RTL gap — framer-motion `x` transforms are **physical** and don't flip under `dir=rtl`: added `useDirection()` hook (`src/shared/hooks`) returning `hiddenStart`/`hiddenEnd` from `isRtl(useLocale())`, wired into the three slide-in panels (MobileNav drawer + SettingsPanel mobile drawer = start-anchored; desktop CopilotPane = end-anchored). `flex-row-reverse` chat rows are already `dir`-aware (no change). No `space-x-*` (would be physical) anywhere. `<html dir>` per-locale unchanged (confirmed `dir=rtl` for FA earlier). |
+| 19 | Layout component tests | `test(layout): add unit tests for TitleBar, MenuBar, ActivityBar, SidebarPanel, TabsBar, StatusBar` | Test infra: `src/test-utils/render.tsx` (`renderWithProviders` wraps NextIntl+Theme+Settings+Tabs+Copilot, optional `locale`), `src/test-utils/intl.ts` (`messages` + `makeT` for server views); `jest.setup.ts` mocks `@/i18n/navigation` (stable router + controllable `usePathname`, `Link`→`<a>`), clears localStorage per test; `jest.config.ts` drops the node_modules transform-ignore so ESM-only `next-intl`/`use-intl` transpile. 6 suites / 12 tests — render + localized strings + interactions (MenuBar dropdown opens, ActivityBar active-state + Settings toggle, Sidebar link hrefs, Tabs × → welcome) + theme reflects in `data-theme` + StatusBar label. `npm test` green. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 19 — Layout component tests
-**Suggested commit:** `test(layout): add unit tests for TitleBar, MenuBar, ActivityBar, SidebarPanel, TabsBar, StatusBar`
-
-Per component:
-- Renders without crashing
-- Shows correct localized strings (wrap with `NextIntlClientProvider` + a small `messages` fixture)
-- User interactions fire (sidebar click navigates, tab × closes, MenuBar dropdown opens)
-- Theme changes reflect in `data-theme` / classes
-
-Create `src/test-utils/render.tsx` that wraps providers (NextIntl + Theme + Tabs + Copilot) for tests.
 
 ### Phase 20 — Theme + settings tests
 **Suggested commit:** `test(theme): add unit tests for ThemeContext, useTheme, and SettingsPanel`

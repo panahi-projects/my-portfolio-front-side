@@ -15,4 +15,13 @@ const config: Config = {
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
 };
 
-export default createJestConfig(config);
+// next-intl / use-intl ship ESM-only, which Jest can't run untransformed. next/jest
+// hardcodes a node_modules ignore; drop it (keep only the CSS-modules guard) so every
+// dependency is run through next/jest's SWC transform.
+export default async () => {
+  const jestConfig = await createJestConfig(config)();
+  jestConfig.transformIgnorePatterns = (jestConfig.transformIgnorePatterns ?? []).filter(
+    (p) => !p.includes("node_modules"),
+  );
+  return jestConfig;
+};

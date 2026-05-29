@@ -152,10 +152,7 @@ export function CopilotPane() {
           </div>
 
           {/* Footer */}
-          <div
-            className="border-t p-3"
-            style={{ borderColor: "var(--color-copilot-border)" }}
-          >
+          <div className="border-t p-3" style={{ borderColor: "var(--color-copilot-border)" }}>
             <CopilotChatInput />
           </div>
         </motion.aside>

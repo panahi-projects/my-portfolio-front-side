@@ -20,7 +20,7 @@ export function ContactForm() {
         subject: z.string().optional(),
         message: z.string().min(1, t("form.required")),
       }),
-    [t],
+    [t]
   );
 
   const {

@@ -46,6 +46,7 @@ export function CopilotProvider({ children }: { children: ReactNode }) {
   // Restore persisted state on mount (kept out of initial state to avoid hydration mismatch).
   useEffect(() => {
     try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-time post-mount rehydration from localStorage
       if (localStorage.getItem(COPILOT_OPEN_KEY) === "1") setIsOpen(true);
       const rawMessages = localStorage.getItem(COPILOT_MESSAGES_KEY);
       if (rawMessages) {

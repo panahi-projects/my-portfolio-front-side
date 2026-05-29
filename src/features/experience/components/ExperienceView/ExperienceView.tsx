@@ -1,20 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { ExperienceData } from "@/features/experience/types";
 
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 /** "2022-01" → "Jan 2022". Falls back to the raw value if unparsable. */
 function formatMonth(value: string): string {

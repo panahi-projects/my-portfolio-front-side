@@ -3,13 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  VscMenu,
-  VscClose,
-  VscSettingsGear,
-  VscSparkle,
-  VscSearch,
-} from "react-icons/vsc";
+import { VscMenu, VscClose, VscSettingsGear, VscSparkle, VscSearch } from "react-icons/vsc";
 import { Link, usePathname } from "@/i18n/navigation";
 import { PAGES, DECORATIVE_FILES, findPageByPath } from "@/features/layout/constants/pages";
 import { CopilotPaneTrigger, useCopilotPane } from "@/features/layout/components/CopilotPane";
@@ -26,10 +20,12 @@ export function MobileNav() {
   const { open: openSettings } = useSettings();
   const { hiddenStart } = useDirection();
 
-  // Close on route change
-  useEffect(() => {
+  // Close the drawer when the route changes (reset-on-change in render phase — no effect).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   // Lock body scroll while the menu overlay is open
   useEffect(() => {
@@ -169,7 +165,7 @@ export function MobileNav() {
                     <li key={key}>
                       <Link
                         href={href}
-                        className="relative flex items-center gap-3 py-2 pe-3 ps-6"
+                        className="relative flex items-center gap-3 py-2 ps-6 pe-3"
                         style={{
                           background: isActive ? "var(--color-sidebar-hover)" : "transparent",
                           color: isActive
@@ -199,7 +195,7 @@ export function MobileNav() {
 
                 {DECORATIVE_FILES.map(({ filename, Icon, iconColor }) => (
                   <li key={filename}>
-                    <span className="flex items-center gap-3 py-2 pe-3 ps-6 opacity-90">
+                    <span className="flex items-center gap-3 py-2 ps-6 pe-3 opacity-90">
                       <Icon
                         className="h-4 w-4 shrink-0"
                         style={{ color: iconColor }}

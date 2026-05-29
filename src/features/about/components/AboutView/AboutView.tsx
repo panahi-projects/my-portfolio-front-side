@@ -27,7 +27,7 @@ function highlight(text: string, keywords: string[]): ReactNode {
       </span>
     ) : (
       <Fragment key={i}>{part}</Fragment>
-    ),
+    )
   );
 }
 

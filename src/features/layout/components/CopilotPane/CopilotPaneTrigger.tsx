@@ -61,10 +61,7 @@ export function CopilotPaneTrigger({
         }
         aria-hidden="true"
       >
-        <VscSparkle
-          className="h-4 w-4"
-          style={{ color: "var(--color-copilot-accent)" }}
-        />
+        <VscSparkle className="h-4 w-4" style={{ color: "var(--color-copilot-accent)" }} />
       </motion.span>
       <span className="flex-1 truncate text-start">{t("triggerLabel")}</span>
       <span

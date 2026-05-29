@@ -20,7 +20,7 @@ interface TypingOptions {
  */
 export function useTypingEffect(
   phrases: string[],
-  { typingSpeed = 70, deletingSpeed = 40, pauseMs = 1600 }: TypingOptions = {},
+  { typingSpeed = 70, deletingSpeed = 40, pauseMs = 1600 }: TypingOptions = {}
 ): string {
   const [text, setText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -49,10 +49,10 @@ export function useTypingEffect(
     const timer = setTimeout(
       () => {
         setText((prev) =>
-          deleting ? current.slice(0, prev.length - 1) : current.slice(0, prev.length + 1),
+          deleting ? current.slice(0, prev.length - 1) : current.slice(0, prev.length + 1)
         );
       },
-      deleting ? deletingSpeed : typingSpeed,
+      deleting ? deletingSpeed : typingSpeed
     );
     return () => clearTimeout(timer);
   }, [text, deleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseMs]);

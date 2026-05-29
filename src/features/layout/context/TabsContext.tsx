@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { PAGES, findPageByPath, type PageKey } from "@/features/layout/constants/pages";
 
@@ -55,6 +48,7 @@ export function TabsProvider({ children }: { children: ReactNode }) {
       if (!Array.isArray(parsed)) return;
       const stored = parsed.filter(isPageKey);
       if (stored.length === 0) return;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-time post-mount rehydration from localStorage
       setOpenTabs((prev) => {
         const merged = [...stored];
         for (const k of prev) if (!merged.includes(k)) merged.push(k);

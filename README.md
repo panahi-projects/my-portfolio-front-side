@@ -8,17 +8,17 @@ A personal portfolio for **Saeed Panahi**, styled as a **VS Code editor**: title
 
 ## Tech stack & rationale
 
-| Tool | Why |
-|------|-----|
-| **Next.js 16** (App Router, Turbopack) | File-based routing, RSC by default, fast dev/build. |
-| **React 19** | Latest server/client component model. |
-| **TypeScript** (strict) | Type-safe data contracts between the service layer and the UI. |
-| **Tailwind CSS v4** (CSS-first) | Utility styling with theme tokens defined in CSS — no JS config. |
-| **next-intl v4** | Locale-prefixed routing (`/en`, `/fa`), server + client translations, RTL. |
-| **framer-motion** | Pane slide-ins, drawer transitions, scroll-in skill bars. |
-| **react-hook-form + zod** | Typed, validated contact form. |
-| **zustand** | Available for future client state (not yet used). |
-| **Jest + React Testing Library** | Unit tests for chrome, theme, Copilot, pages, and services. |
+| Tool                                   | Why                                                                        |
+| -------------------------------------- | -------------------------------------------------------------------------- |
+| **Next.js 16** (App Router, Turbopack) | File-based routing, RSC by default, fast dev/build.                        |
+| **React 19**                           | Latest server/client component model.                                      |
+| **TypeScript** (strict)                | Type-safe data contracts between the service layer and the UI.             |
+| **Tailwind CSS v4** (CSS-first)        | Utility styling with theme tokens defined in CSS — no JS config.           |
+| **next-intl v4**                       | Locale-prefixed routing (`/en`, `/fa`), server + client translations, RTL. |
+| **framer-motion**                      | Pane slide-ins, drawer transitions, scroll-in skill bars.                  |
+| **react-hook-form + zod**              | Typed, validated contact form.                                             |
+| **zustand**                            | Available for future client state (not yet used).                          |
+| **Jest + React Testing Library**       | Unit tests for chrome, theme, Copilot, pages, and services.                |
 
 ---
 
@@ -77,18 +77,22 @@ npm run format       # Prettier --write
 ## How to…
 
 ### Add a page
+
 1. Add an entry to `PAGES` in `src/features/layout/constants/pages.ts` (key, filename, href, icon, `navKey`).
 2. Add `nav.<key>` to `src/i18n/locales/{en,fa}/common.json`.
 3. Create the route `src/app/[locale]/<page>/page.tsx` (server component) that fetches data and renders a view.
 4. Add the feature: `src/features/<page>/types/index.ts`, a `*View` component, and a service + mock under `src/services/api/`.
 
 ### Theme
+
 Themes are pure CSS. Each lives in `src/styles/themes/<id>.css` scoped under `[data-theme="<id>"]`; `globals.css` re-exports tokens via `@theme inline { … }` so utilities like `bg-titlebar` work. Register a new theme in `src/features/theme/constants/themes.ts`. Switching writes `document.documentElement.dataset.theme` + `localStorage`; `ThemeInitScript` applies the persisted theme pre-hydration (no flash). **Do not add `tailwind.config.ts`.**
 
 ### Language
+
 All visible strings come from `useTranslations` (client) / `getTranslations` (server) over the namespaces `common`, `home`, `about`, `skills`, `experience`, `contact` — each mirrored in `en/` and `fa/`. The settings panel switches locale via the localized `useRouter().replace(pathname, { locale })`. Use **logical CSS only** (`start`/`end`, `ms-*`, `ps-*`, `borderInlineStart`) so Farsi mirrors automatically; framer-motion `x` slides use the `useDirection()` hook to flip.
 
 ### Swap mock → real API
+
 Each page reads from `src/services/api/<page>.service.ts`:
 
 ```ts

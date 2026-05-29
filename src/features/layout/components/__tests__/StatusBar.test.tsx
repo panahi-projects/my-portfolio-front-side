@@ -24,7 +24,7 @@ describe("StatusBar", () => {
       <>
         <ThemeProbe />
         <StatusBar />
-      </>,
+      </>
     );
     fireEvent.click(screen.getByText("set-nord"));
     expect(document.documentElement.dataset.theme).toBe("nord");

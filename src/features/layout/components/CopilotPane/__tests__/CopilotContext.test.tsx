@@ -37,7 +37,7 @@ describe("CopilotContext", () => {
     localStorage.setItem("portfolio-copilot-open", "1");
     localStorage.setItem(
       "portfolio-copilot-messages",
-      JSON.stringify([{ id: "1", role: "user", content: "hello", timestamp: 1 }]),
+      JSON.stringify([{ id: "1", role: "user", content: "hello", timestamp: 1 }])
     );
     renderWithProviders(<Probe />);
     expect(screen.getByTestId("open")).toHaveTextContent("true");

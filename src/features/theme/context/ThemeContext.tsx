@@ -33,6 +33,7 @@ export function ThemeProvider({ children, initialTheme = DEFAULT_THEME }: ThemeP
     if (typeof document === "undefined") return;
     const fromDom = document.documentElement.dataset.theme;
     if (isThemeId(fromDom)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-time post-mount sync from the pre-hydration DOM (avoids a hydration mismatch)
       setThemeState(fromDom);
       return;
     }

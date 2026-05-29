@@ -61,7 +61,9 @@ export function StatusBar() {
         <span className="flex items-center gap-1" title={activeTheme.name}>
           <span aria-hidden="true">{activeTheme.emoji}</span>
           <span>{activeTheme.name}</span>
-          <span className="opacity-60" aria-hidden="true">▲</span>
+          <span className="opacity-60" aria-hidden="true">
+            ▲
+          </span>
         </span>
         <span>{time}</span>
       </div>

@@ -4,7 +4,12 @@ import type { KeyboardEvent, MouseEvent } from "react";
 import { useTranslations } from "next-intl";
 import { VscClose } from "react-icons/vsc";
 import { useTabs } from "@/shared/hooks/useTabs";
-import { PAGES, findPageByPath, type PageKey, type PageMeta } from "@/features/layout/constants/pages";
+import {
+  PAGES,
+  findPageByPath,
+  type PageKey,
+  type PageMeta,
+} from "@/features/layout/constants/pages";
 import { usePathname } from "@/i18n/navigation";
 
 const PAGES_BY_KEY = Object.fromEntries(PAGES.map((p) => [p.key, p])) as Record<string, PageMeta>;
@@ -32,7 +37,7 @@ export function TabsBar() {
       >
         <div className="flex min-w-0 flex-1 overflow-x-auto">
           {openTabs.length === 0 ? (
-            <div className="flex items-center px-3 text-[11px] opacity-60 italic">
+            <div className="flex items-center px-3 text-[11px] italic opacity-60">
               {t("tabs.welcome")}
             </div>
           ) : (
@@ -49,12 +54,8 @@ export function TabsBar() {
                   onClick={() => switchTab(key)}
                   className="group relative flex h-full shrink-0 items-center gap-2 border-e px-3"
                   style={{
-                    background: isActive
-                      ? "var(--color-tab-active-bg)"
-                      : "var(--color-tabs-bg)",
-                    color: isActive
-                      ? "var(--color-editor-text)"
-                      : "var(--color-sidebar-text)",
+                    background: isActive ? "var(--color-tab-active-bg)" : "var(--color-tabs-bg)",
+                    color: isActive ? "var(--color-editor-text)" : "var(--color-sidebar-text)",
                     borderInlineEndColor: "var(--color-border)",
                   }}
                 >

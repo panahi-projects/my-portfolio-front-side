@@ -18,7 +18,7 @@ interface ProviderOptions extends Omit<RenderOptions, "wrapper"> {
  */
 export function renderWithProviders(
   ui: ReactElement,
-  { locale = "en", ...options }: ProviderOptions = {},
+  { locale = "en", ...options }: ProviderOptions = {}
 ) {
   function Wrapper({ children }: { children: ReactNode }) {
     return (

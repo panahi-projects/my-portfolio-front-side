@@ -17,7 +17,7 @@ function setup(locale = "en") {
       <OpenButton />
       <SettingsPanel />
     </>,
-    { locale },
+    { locale }
   );
   fireEvent.click(screen.getByText("open-settings"));
   return utils;
@@ -29,7 +29,7 @@ describe("SettingsPanel", () => {
       <>
         <OpenButton />
         <SettingsPanel />
-      </>,
+      </>
     );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     fireEvent.click(screen.getByText("open-settings"));
@@ -48,14 +48,16 @@ describe("SettingsPanel", () => {
     setup();
     expect(screen.getAllByRole("button", { name: "Default Dark" })[0]).toHaveAttribute(
       "aria-pressed",
-      "true",
+      "true"
     );
   });
 
   it("switches locale when a language button is clicked", () => {
     setup();
     fireEvent.click(screen.getAllByRole("button", { name: "فارسی" })[0]);
-    const nav = jest.requireMock("@/i18n/navigation") as { useRouter: () => { replace: jest.Mock } };
+    const nav = jest.requireMock("@/i18n/navigation") as {
+      useRouter: () => { replace: jest.Mock };
+    };
     expect(nav.useRouter().replace).toHaveBeenCalledWith("/", { locale: "fa" });
   });
 });

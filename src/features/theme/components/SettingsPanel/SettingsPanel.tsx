@@ -122,7 +122,10 @@ function ThemeRows({ onPick }: { onPick?: () => void }) {
                 aria-hidden="true"
               />
               <span aria-hidden="true">{th.emoji}</span>
-              <span className="flex-1 truncate text-start" style={{ color: "var(--color-editor-text)" }}>
+              <span
+                className="flex-1 truncate text-start"
+                style={{ color: "var(--color-editor-text)" }}
+              >
                 {th.name}
               </span>
               {active && (
@@ -314,12 +317,10 @@ export function SettingsPanel() {
                     >
                       <Icon className="h-4 w-4 shrink-0 opacity-80" aria-hidden="true" />
                       <span className="flex-1 text-start">{t(`actions.${id}`)}</span>
-                      {shortcut && (
-                        <span className="text-[10px] opacity-50">{shortcut}</span>
-                      )}
+                      {shortcut && <span className="text-[10px] opacity-50">{shortcut}</span>}
                     </button>
                   </li>
-                ),
+                )
               )}
             </ul>
             <Divider />

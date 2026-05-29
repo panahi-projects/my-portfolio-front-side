@@ -26,7 +26,7 @@ export function CopilotChatMessage({ message }: { message: CopilotMessage }) {
       </span>
 
       <div className={`flex max-w-[80%] flex-col ${isUser ? "items-end" : "items-start"}`}>
-        <span className="mb-1 text-[10px] uppercase tracking-wide opacity-50">
+        <span className="mb-1 text-[10px] tracking-wide uppercase opacity-50">
           {isUser ? t("you") : t("assistant")}
         </span>
         <div

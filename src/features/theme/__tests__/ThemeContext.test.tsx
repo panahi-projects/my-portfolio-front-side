@@ -20,7 +20,7 @@ describe("ThemeContext", () => {
     render(
       <ThemeProvider>
         <Probe />
-      </ThemeProvider>,
+      </ThemeProvider>
     );
     fireEvent.click(screen.getByText("set-gruvbox"));
 

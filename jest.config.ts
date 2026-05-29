@@ -21,7 +21,7 @@ const config: Config = {
 const buildConfig = async () => {
   const jestConfig = await createJestConfig(config)();
   jestConfig.transformIgnorePatterns = (jestConfig.transformIgnorePatterns ?? []).filter(
-    (p) => !p.includes("node_modules"),
+    (p) => !p.includes("node_modules")
   );
   return jestConfig;
 };

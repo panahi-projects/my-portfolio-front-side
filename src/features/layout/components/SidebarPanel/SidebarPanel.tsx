@@ -27,7 +27,7 @@ export function SidebarPanel() {
             <li key={key}>
               <Link
                 href={href}
-                className="relative flex items-center gap-2 py-1 pe-3 ps-6 transition-colors"
+                className="relative flex items-center gap-2 py-1 ps-6 pe-3 transition-colors"
                 style={{
                   background: isActive ? "var(--color-sidebar-hover)" : "transparent",
                   color: isActive ? "var(--color-editor-text)" : "var(--color-sidebar-text)",
@@ -57,12 +57,8 @@ export function SidebarPanel() {
 
         {DECORATIVE_FILES.map(({ filename, Icon, iconColor }) => (
           <li key={filename}>
-            <span className="flex items-center gap-2 py-1 pe-3 ps-6 opacity-90">
-              <Icon
-                className="h-4 w-4 shrink-0"
-                style={{ color: iconColor }}
-                aria-hidden="true"
-              />
+            <span className="flex items-center gap-2 py-1 ps-6 pe-3 opacity-90">
+              <Icon className="h-4 w-4 shrink-0" style={{ color: iconColor }} aria-hidden="true" />
               <span className="truncate" title={filename}>
                 {filename}
               </span>

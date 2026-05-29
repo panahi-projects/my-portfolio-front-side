@@ -2,7 +2,7 @@
 
 A personal portfolio for **Saeed Panahi**, styled as a **VS Code editor**: title bar, menu bar, activity bar, file-tree sidebar, editor tabs, status bar, a mock **Copilot** chat pane, a settings panel with live theme switching, and full **English / Farsi (RTL)** localization.
 
-![Home page](.claude/screenshots/1-page-home.png)
+![Home page](public/assets/images/desktop-view.png)
 
 ---
 
@@ -109,12 +109,6 @@ Replace the body with a `fetch`/SDK call that returns the same typed shape (`Hom
 ## Testing
 
 `npm test` runs Jest + React Testing Library (jsdom). `src/test-utils/render.tsx` provides `renderWithProviders` (NextIntl + Theme + Settings + Tabs + Copilot). Coverage spans layout chrome, theme/settings, the Copilot pane, page views, and the mock services.
-
----
-
-## Screenshots
-
-Reference designs live in [`.claude/screenshots/`](.claude/screenshots/): page designs (`1-page-home` … `5-page-contact`), the Copilot pane (`copilot-desktop`, `copilot-mobile`), settings (`settings-desktop`, `settings-mobile`), menus, mobile views, and theme samples.
 
 ---
 

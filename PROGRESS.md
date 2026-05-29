@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-13 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-14 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 14 — Skills page.
+**Next up:** Phase 15 — Experience page.
 
 ---
 
@@ -130,17 +130,11 @@ src/
 | 11 | Mock API service layer | `feat(api): scaffold mock API service layer for all 5 pages with typed mock data` | Per-page types in `src/features/<page>/types/index.ts` (`HomeData`/`AboutData`/`SkillsData`/`ExperienceData`/`ContactData` + sub-interfaces); typed mocks in `src/services/api/mock/<page>.mock.ts` (content from `INFO.md`); async services `src/services/api/<page>.service.ts` exporting `get<Page>Data(): Promise<…>` with `// TODO: Replace with real API call`. Service path matches Phase 12's `services/api/home.service.ts` reference. Not yet wired to UI (pages consume them from Phase 12 on). |
 | 12 | Home page | `feat(home): implement Home page with hero section, typing animation, and mock data` | `page.tsx` (server) fetches `getHomeData()` → renders `HomeHero` (async server component); green code-comment banner (i18n `home.banner`), name split (Saeed plain + Panahi accent gradient via `bg-clip-text`), role chips (dot/`@company`), client `TypingTagline` island driven by `useTypingEffect` hook (all setState in timeouts → lint-clean), intro paragraph with accent keyword highlighting, CTA buttons (Link for internal / `<a>` for hash+external), 4-col stats grid w/ logical-border dividers, social row; slug→icon map in `home/constants/icons.ts` (fa6/si/vsc, Tableau→VscGraphLine). Verified via SSR (EN content + FA banner + `dir=rtl`). |
 | 13 | About page | `feat(about): implement About page with bio, current focus, education, and CV download` | `about/page.tsx` (server) fetches `getAboutData()` → renders `AboutView` (async server component); green HTML-comment banner (`about.banner`), "About Me" heading + `// who I am · …` subtitle, bio card (availability dot + location + accent keyword highlighting), CURRENT FOCUS 2-col emoji grid, EDUCATION list (🎓 + institution/degree/period), Download CV button (`VscCloudDownload` → `cvUrl`); teal `SectionHeading` (#4ec9b0); added `about.{banner,currentFocus,education,downloadCv}` i18n keys (EN+FA). Verified via build static prerender of `/en/about` + `/fa/about`. |
+| 14 | Skills page | `feat(skills): implement Skills page with animated proficiency bars and category grid` | `skills/page.tsx` (server) fetches `getSkillsData()` → renders `SkillsView` (async server); green JSON-comment banner (`skills.banner`), "Skills" heading + JSON subtitle (`skills.jsonSubtitle`), 2-col category grid (accent uppercase heading + divider), each skill row = client `SkillBar` (name · animated fill · %); `SkillBar` uses `framer-motion useInView({once})` to fill 0→proficiency on scroll-in (logical `start`-anchored, RTL-safe), `role=progressbar` a11y; vibrant cycling palette in `skills/constants/colors.ts`; added `skills.{banner,jsonSubtitle}` i18n keys (EN+FA). Verified via build static prerender. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 14 — Skills page
-**Reference:** `.claude/screenshots/3-page-skills.png`, `mobile-page (2).png`
-- JSON-comment banner `// skills.json — tech stack & tools I actually use`
-- Heading "Skills" + JSON subtitle `{ "status": "always_learning", "passion": "immeasurable" }`
-- Categories with progress bars + percentages
-- Animate bar fill on scroll into view (`framer-motion useInView`)
 
 ### Phase 15 — Experience page
 **Reference:** `.claude/screenshots/4-page-experience.png`

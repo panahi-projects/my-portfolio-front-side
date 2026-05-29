@@ -105,22 +105,23 @@ export function TabsProvider({ children }: { children: ReactNode }) {
 
   const closeTab = useCallback(
     (key: PageKey) => {
-      setOpenTabs((prev) => {
-        const idx = prev.indexOf(key);
-        if (idx === -1) return prev;
-        const next = prev.filter((k) => k !== key);
-        if (activeTab === key) {
-          if (next.length > 0) {
-            const focusIdx = Math.min(idx, next.length - 1);
-            goTo(next[focusIdx]);
-          } else {
-            setActiveTab(null);
-          }
+      const idx = openTabs.indexOf(key);
+      if (idx === -1) return;
+      const next = openTabs.filter((k) => k !== key);
+      setOpenTabs(next);
+      // Navigation/active-tab updates happen outside the state updater: an
+      // updater must stay pure, and router.push() triggers a Router state
+      // update — calling it during render throws "Cannot update a component
+      // while rendering a different component".
+      if (activeTab === key) {
+        if (next.length > 0) {
+          goTo(next[Math.min(idx, next.length - 1)]);
+        } else {
+          setActiveTab(null);
         }
-        return next;
-      });
+      }
     },
-    [activeTab, goTo]
+    [openTabs, activeTab, goTo]
   );
 
   const closeAll = useCallback(() => {

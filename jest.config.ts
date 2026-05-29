@@ -13,6 +13,9 @@ const config: Config = {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
+  // Keep the standalone build output (.next/standalone/package.json) out of the
+  // haste map, otherwise it collides with the root package.json.
+  modulePathIgnorePatterns: ["<rootDir>/.next/"],
 };
 
 // next-intl / use-intl ship ESM-only, which Jest can't run untransformed. next/jest

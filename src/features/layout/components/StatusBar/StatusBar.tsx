@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { VscSourceControl, VscSync, VscError, VscWarning, VscCopilot } from "react-icons/vsc";
 import { useTheme } from "@/features/theme/hooks/useTheme";
@@ -14,11 +15,21 @@ export function StatusBar() {
   const { theme, themes } = useTheme();
   const activeTheme = themes.find((th) => th.id === theme) ?? themes[0];
 
-  const time = new Intl.DateTimeFormat(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(new Date());
+  // Render the clock only after mount. The server and client can render in
+  // different minutes, which causes a hydration mismatch — so we start empty
+  // (matching SSR) and fill in on the client, ticking every 30s.
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const format = () =>
+      new Intl.DateTimeFormat(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(new Date());
+    setTime(format());
+    const id = setInterval(() => setTime(format()), 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <footer

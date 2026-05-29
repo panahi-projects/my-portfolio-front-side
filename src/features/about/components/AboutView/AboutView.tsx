@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
-import { getTranslations } from "next-intl/server";
 import { VscCloudDownload } from "react-icons/vsc";
+import { about } from "@/content/about";
 import type { AboutData } from "@/features/about/types";
 
 /** Keywords highlighted (accent) inside the bio paragraph. */
@@ -49,21 +49,21 @@ const cardStyle = {
 } as const;
 
 export async function AboutView({ data }: { data: AboutData }) {
-  const t = await getTranslations("about");
+  const t = about;
 
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-8 md:px-10 md:py-12">
       {/* HTML-comment banner */}
-      <p className="font-mono text-sm text-green-400 md:text-base">{t("banner")}</p>
+      <p className="font-mono text-sm text-green-400 md:text-base">{t.banner}</p>
 
       {/* Heading + subtitle */}
       <h1
         className="mt-4 text-4xl font-bold tracking-tight md:text-6xl"
         style={{ color: "var(--color-editor-text)" }}
       >
-        {t("title")}
+        {t.title}
       </h1>
-      <p className="mt-2 font-mono text-sm opacity-50 md:text-base">{`// ${t("subtitle")}`}</p>
+      <p className="mt-2 font-mono text-sm opacity-50 md:text-base">{`// ${t.subtitle}`}</p>
 
       {/* Bio card */}
       <div className="mt-8 rounded-lg border p-5 md:p-6" style={cardStyle}>
@@ -89,7 +89,7 @@ export async function AboutView({ data }: { data: AboutData }) {
 
       {/* Current focus */}
       <section className="mt-10">
-        <SectionHeading>{t("currentFocus")}</SectionHeading>
+        <SectionHeading>{t.currentFocus}</SectionHeading>
         <ul className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
           {data.currentFocus.map((item) => (
             <li
@@ -113,7 +113,7 @@ export async function AboutView({ data }: { data: AboutData }) {
 
       {/* Education */}
       <section className="mt-10">
-        <SectionHeading>{t("education")}</SectionHeading>
+        <SectionHeading>{t.education}</SectionHeading>
         <ul className="mt-4 flex flex-col gap-3">
           {data.education.map((edu) => (
             <li
@@ -149,7 +149,7 @@ export async function AboutView({ data }: { data: AboutData }) {
           }}
         >
           <VscCloudDownload className="h-4 w-4" aria-hidden="true" />
-          <span>{t("downloadCv")}</span>
+          <span>{t.downloadCv}</span>
         </a>
       </div>
     </div>

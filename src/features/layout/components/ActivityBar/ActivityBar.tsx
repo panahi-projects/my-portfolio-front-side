@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { ComponentType, SVGAttributes } from "react";
-import { useTranslations } from "next-intl";
 import {
   VscFiles,
   VscSearch,
@@ -12,6 +11,7 @@ import {
   VscSettingsGear,
 } from "react-icons/vsc";
 import { useSettings } from "@/features/theme/hooks/useSettings";
+import { common } from "@/content/common";
 
 type ActivityKey = "explorer" | "search" | "git" | "downloads" | "copilot";
 
@@ -29,7 +29,6 @@ const ITEMS: readonly ActivityItem[] = [
 ];
 
 export function ActivityBar() {
-  const t = useTranslations("common");
   const [active, setActive] = useState<ActivityKey>("explorer");
   const { toggle: toggleSettings, isOpen: settingsOpen } = useSettings();
 
@@ -37,12 +36,12 @@ export function ActivityBar() {
     <aside
       className="flex w-12 shrink-0 flex-col items-center justify-between py-2"
       style={{ background: "var(--color-activitybar-bg)", color: "var(--color-activitybar-icon)" }}
-      aria-label={t("a11y.activityBar")}
+      aria-label={common.a11y.activityBar}
     >
       <ul className="flex flex-col">
         {ITEMS.map(({ key, Icon }) => {
           const isActive = active === key;
-          const label = t(`activitybar.${key}`);
+          const label = common.activitybar[key];
           return (
             <li key={key}>
               <button
@@ -77,8 +76,8 @@ export function ActivityBar() {
           <button
             type="button"
             onClick={toggleSettings}
-            title={t("settings.title")}
-            aria-label={t("settings.title")}
+            title={common.settings.title}
+            aria-label={common.settings.title}
             aria-pressed={settingsOpen}
             className="grid h-12 w-12 place-items-center transition-colors hover:text-white"
             style={{ color: settingsOpen ? "var(--color-activitybar-active)" : undefined }}

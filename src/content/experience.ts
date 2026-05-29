@@ -1,0 +1,7 @@
+export const experience = {
+  title: "Experience",
+  subtitle: "professional journey",
+  banner: "// experience.ts - professional journey",
+  interfaceLine: "interface Career extends Timeline {}",
+  present: "Present",
+} as const;

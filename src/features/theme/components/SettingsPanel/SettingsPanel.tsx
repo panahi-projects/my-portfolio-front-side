@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
-import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   VscCheck,
@@ -17,12 +16,10 @@ import {
 import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
 import type { IconType } from "react-icons";
-import { useRouter, usePathname } from "@/i18n/navigation";
-import { routing, type AppLocale } from "@/i18n/routing";
+import { common } from "@/content/common";
 import { useTheme } from "@/features/theme/hooks/useTheme";
 import { useSettings } from "@/features/theme/hooks/useSettings";
 import { useCopilotPane } from "@/features/layout/components/CopilotPane";
-import { useDirection } from "@/shared/hooks/useDirection";
 
 const RESUME_HREF = "/Saeed_Panahi_Resume.pdf";
 
@@ -145,7 +142,7 @@ function ThemeRows({ onPick }: { onPick?: () => void }) {
 
 /** KEYBOARD SHORTCUTS — display-only list, shared by desktop + mobile. */
 function ShortcutRows() {
-  const t = useTranslations("common.settings.shortcuts");
+  const t = common.settings.shortcuts;
   return (
     <ul className="px-1">
       {SHORTCUTS.map((s) => (
@@ -165,60 +162,27 @@ function ShortcutRows() {
               </kbd>
             ))}
           </span>
-          <span className="opacity-60">{t(s.id)}</span>
+          <span className="opacity-60">{t[s.id]}</span>
         </li>
       ))}
     </ul>
   );
 }
 
-/** LANGUAGE toggle — switches locale via the localized router. */
-function LanguageButtons() {
-  const t = useTranslations("common");
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  return (
-    <div className="flex gap-2 px-2">
-      {routing.locales.map((loc: AppLocale) => {
-        const active = locale === loc;
-        return (
-          <button
-            key={loc}
-            type="button"
-            onClick={() => router.replace(pathname, { locale: loc })}
-            aria-pressed={active}
-            className="flex-1 rounded-md border px-3 py-1.5 text-xs transition-colors"
-            style={{
-              borderColor: active ? "var(--color-accent)" : "var(--color-border)",
-              background: active ? "var(--color-sidebar-hover)" : "transparent",
-              color: "var(--color-editor-text)",
-            }}
-          >
-            {t(`languages.${loc}`)}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function PanelFooter() {
-  const t = useTranslations("common.settings.footer");
+  const t = common.settings.footer;
   return (
     <div className="px-2 py-3 text-[10px] leading-relaxed opacity-50">
-      <p>{t("version")}</p>
-      <p>{t("madeWith")}</p>
+      <p>{t.version}</p>
+      <p>{t.madeWith}</p>
     </div>
   );
 }
 
 export function SettingsPanel() {
-  const t = useTranslations("common.settings");
+  const t = common.settings;
   const { isOpen, close } = useSettings();
   const { open: openCopilot } = useCopilotPane();
-  const { hiddenStart } = useDirection();
 
   // Close on Escape; lock body scroll while open.
   useEffect(() => {
@@ -282,18 +246,18 @@ export function SettingsPanel() {
             }}
             role="dialog"
             aria-modal="false"
-            aria-label={t("title")}
+            aria-label={t.title}
           >
             <div className="px-2 pt-3 pb-1 text-[10px] font-semibold tracking-wider uppercase opacity-50">
-              {t("title")}
+              {t.title}
             </div>
             <Divider />
 
-            <SectionLabel emoji="🎨">{t("theme")}</SectionLabel>
+            <SectionLabel emoji="🎨">{t.theme}</SectionLabel>
             <ThemeRows />
             <Divider />
 
-            <SectionLabel emoji="⚡">{t("quickActions")}</SectionLabel>
+            <SectionLabel emoji="⚡">{t.quickActions}</SectionLabel>
             <ul className="px-1">
               {QUICK_ACTIONS.map(({ id, Icon, shortcut }) =>
                 id === "downloadResume" ? (
@@ -305,7 +269,7 @@ export function SettingsPanel() {
                       className="flex w-full items-center gap-3 rounded px-2 py-2 text-xs transition-colors hover:bg-white/5"
                     >
                       <Icon className="h-4 w-4 shrink-0 opacity-80" aria-hidden="true" />
-                      <span className="flex-1 text-start">{t(`actions.${id}`)}</span>
+                      <span className="flex-1 text-start">{t.actions[id]}</span>
                     </a>
                   </li>
                 ) : (
@@ -316,7 +280,7 @@ export function SettingsPanel() {
                       className="flex w-full items-center gap-3 rounded px-2 py-2 text-xs transition-colors hover:bg-white/5"
                     >
                       <Icon className="h-4 w-4 shrink-0 opacity-80" aria-hidden="true" />
-                      <span className="flex-1 text-start">{t(`actions.${id}`)}</span>
+                      <span className="flex-1 text-start">{t.actions[id]}</span>
                       {shortcut && <span className="text-[10px] opacity-50">{shortcut}</span>}
                     </button>
                   </li>
@@ -325,12 +289,8 @@ export function SettingsPanel() {
             </ul>
             <Divider />
 
-            <SectionLabel emoji="⌨️">{t("keyboardShortcuts")}</SectionLabel>
+            <SectionLabel emoji="⌨️">{t.keyboardShortcuts}</SectionLabel>
             <ShortcutRows />
-            <Divider />
-
-            <SectionLabel emoji="🌐">{t("language")}</SectionLabel>
-            <LanguageButtons />
 
             <Divider />
             <PanelFooter />
@@ -349,9 +309,9 @@ export function SettingsPanel() {
           />
           <motion.aside
             key="settings-mobile"
-            initial={{ x: hiddenStart }}
+            initial={{ x: "-100%" }}
             animate={{ x: 0 }}
-            exit={{ x: hiddenStart }}
+            exit={{ x: "-100%" }}
             transition={{ type: "tween", duration: 0.22 }}
             className="fixed inset-y-0 start-0 z-50 flex w-80 max-w-[85vw] flex-col overflow-y-auto md:hidden"
             style={{
@@ -361,14 +321,14 @@ export function SettingsPanel() {
             }}
             role="dialog"
             aria-modal="true"
-            aria-label={t("title")}
+            aria-label={t.title}
           >
             <div
               className="flex items-center justify-between px-3 py-3"
               style={{ borderBottom: "1px solid var(--color-border)" }}
             >
               <span className="text-[11px] font-semibold tracking-wider uppercase opacity-70">
-                {t("title")}
+                {t.title}
               </span>
               <div className="flex items-center gap-1">
                 <span
@@ -381,7 +341,7 @@ export function SettingsPanel() {
                 <button
                   type="button"
                   onClick={close}
-                  aria-label={t("close") /* fallback handled by i18n */}
+                  aria-label={t.close}
                   className="grid h-8 w-8 place-items-center rounded hover:bg-white/10"
                 >
                   <VscClose className="h-5 w-5" aria-hidden="true" />
@@ -408,7 +368,7 @@ export function SettingsPanel() {
                   style={{ color: "var(--color-copilot-accent)" }}
                   aria-hidden="true"
                 />
-                <span className="flex-1 text-start font-medium">{t("openCopilot")}</span>
+                <span className="flex-1 text-start font-medium">{t.openCopilot}</span>
                 <span
                   className="rounded px-1.5 py-0.5 text-[10px]"
                   style={{ background: "var(--color-sidebar-hover)" }}
@@ -419,21 +379,17 @@ export function SettingsPanel() {
               </button>
             </div>
 
-            <SectionLabel emoji="🎨">{t("theme")}</SectionLabel>
+            <SectionLabel emoji="🎨">{t.theme}</SectionLabel>
             <div className="px-1">
               <ThemeRows />
             </div>
             <Divider />
 
-            <SectionLabel emoji="⌨️">{t("keyboardShortcuts")}</SectionLabel>
+            <SectionLabel emoji="⌨️">{t.keyboardShortcuts}</SectionLabel>
             <ShortcutRows />
             <Divider />
 
-            <SectionLabel emoji="🌐">{t("language")}</SectionLabel>
-            <LanguageButtons />
-            <Divider />
-
-            <SectionLabel emoji="🔗">{t("links")}</SectionLabel>
+            <SectionLabel emoji="🔗">{t.links}</SectionLabel>
             <ul className="px-1 pb-1">
               {SOCIAL_LINKS.map(({ label, href, Icon, color }) => (
                 <li key={label}>

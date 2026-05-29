@@ -1,21 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { common } from "@/content/common";
 
 const MENU_KEYS = ["file", "edit", "view", "go", "run", "terminal", "help", "copilot"] as const;
 type MenuKey = (typeof MENU_KEYS)[number];
 
 export function MenuBar() {
-  const t = useTranslations("common.menu");
-  const tCommon = useTranslations("common");
+  const t = common.menu;
   const [openKey, setOpenKey] = useState<MenuKey | null>(null);
 
   return (
     <nav
       className="flex h-7 shrink-0 items-center gap-1 px-2 text-xs select-none"
       style={{ background: "var(--color-menubar-bg)", color: "var(--color-sidebar-text)" }}
-      aria-label={tCommon("a11y.menuBar")}
+      aria-label={common.a11y.menuBar}
     >
       {MENU_KEYS.map((key) => {
         const isOpen = openKey === key;
@@ -30,7 +29,7 @@ export function MenuBar() {
               aria-expanded={isOpen}
               aria-haspopup="menu"
             >
-              {t(key)}
+              {t[key]}
             </button>
             {isOpen ? (
               <div
@@ -43,7 +42,7 @@ export function MenuBar() {
                 }}
                 onMouseLeave={() => setOpenKey(null)}
               >
-                <span className="block px-3 py-1 opacity-60">— {t(key)} —</span>
+                <span className="block px-3 py-1 opacity-60">— {t[key]} —</span>
               </div>
             ) : null}
           </div>

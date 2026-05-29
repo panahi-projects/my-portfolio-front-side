@@ -11,13 +11,12 @@ function OpenButton() {
   );
 }
 
-function setup(locale = "en") {
+function setup() {
   const utils = renderWithProviders(
     <>
       <OpenButton />
       <SettingsPanel />
-    </>,
-    { locale }
+    </>
   );
   fireEvent.click(screen.getByText("open-settings"));
   return utils;
@@ -50,14 +49,5 @@ describe("SettingsPanel", () => {
       "aria-pressed",
       "true"
     );
-  });
-
-  it("switches locale when a language button is clicked", () => {
-    setup();
-    fireEvent.click(screen.getAllByRole("button", { name: "فارسی" })[0]);
-    const nav = jest.requireMock("@/i18n/navigation") as {
-      useRouter: () => { replace: jest.Mock };
-    };
-    expect(nav.useRouter().replace).toHaveBeenCalledWith("/", { locale: "fa" });
   });
 });

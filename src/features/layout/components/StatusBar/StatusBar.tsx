@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { VscSourceControl, VscSync, VscError, VscWarning, VscCopilot } from "react-icons/vsc";
 import { useTheme } from "@/features/theme/hooks/useTheme";
-import { usePathname } from "@/i18n/navigation";
+import { usePathname } from "next/navigation";
 import { findPageByPath } from "@/features/layout/constants/pages";
+import { common } from "@/content/common";
 
 export function StatusBar() {
-  const t = useTranslations("common");
-  const tStatus = useTranslations("common.statusbar");
+  const tStatus = common.statusbar;
   const pathname = usePathname();
   const active = findPageByPath(pathname);
   const { theme, themes } = useTheme();
@@ -26,6 +25,7 @@ export function StatusBar() {
         minute: "2-digit",
         hour12: false,
       }).format(new Date());
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional one-time post-mount clock init; SSR renders empty to avoid a hydration mismatch
     setTime(format());
     const id = setInterval(() => setTime(format()), 30_000);
     return () => clearInterval(id);
@@ -38,36 +38,36 @@ export function StatusBar() {
         background: "var(--color-statusbar-bg)",
         color: "var(--color-statusbar-text)",
       }}
-      aria-label={t("a11y.statusBar")}
+      aria-label={common.a11y.statusBar}
     >
       <div className="flex items-center gap-4 px-3">
-        <span className="flex items-center gap-1" title={tStatus("errors")}>
+        <span className="flex items-center gap-1" title={tStatus.errors}>
           <VscError className="h-3.5 w-3.5" aria-hidden="true" />
           <span>0</span>
         </span>
-        <span className="flex items-center gap-1" title={tStatus("warnings")}>
+        <span className="flex items-center gap-1" title={tStatus.warnings}>
           <VscWarning className="h-3.5 w-3.5" aria-hidden="true" />
           <span>0</span>
         </span>
-        <span className="flex items-center gap-1" title={tStatus("gitBranch")}>
+        <span className="flex items-center gap-1" title={tStatus.gitBranch}>
           <VscSourceControl className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>{tStatus("branch")}</span>
+          <span>{tStatus.branch}</span>
         </span>
-        <span className="flex items-center gap-1" title={tStatus("syncStatus")}>
+        <span className="flex items-center gap-1" title={tStatus.syncStatus}>
           <VscSync className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>{t("app.title")}</span>
+          <span>{common.app.title}</span>
         </span>
       </div>
 
       <div className="flex flex-1" />
 
       <div className="flex items-center gap-4 px-3">
-        <span className="flex items-center gap-1" title={tStatus("copilot")}>
+        <span className="flex items-center gap-1" title={tStatus.copilot}>
           <VscCopilot className="h-3.5 w-3.5" aria-hidden="true" />
-          <span>{tStatus("copilotLabel")}</span>
+          <span>{tStatus.copilotLabel}</span>
         </span>
         <span>{active.language}</span>
-        <span>{tStatus("encoding")}</span>
+        <span>{tStatus.encoding}</span>
         <span>Prettier</span>
         <span className="flex items-center gap-1" title={activeTheme.name}>
           <span aria-hidden="true">{activeTheme.emoji}</span>

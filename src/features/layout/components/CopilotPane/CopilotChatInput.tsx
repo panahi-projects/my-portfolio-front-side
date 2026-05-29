@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useTranslations } from "next-intl";
 import { VscSend } from "react-icons/vsc";
 import { useCopilotPane } from "./hooks/useCopilotPane";
+import { common } from "@/content/common";
 
 /**
  * Controlled chat input + send button. Enter (form submit) sends the message
  * and clears the field. Empty/whitespace input is ignored.
  */
 export function CopilotChatInput() {
-  const t = useTranslations("common.copilot");
+  const t = common.copilot;
   const { sendMessage } = useCopilotPane();
   const [value, setValue] = useState("");
 
@@ -37,15 +37,15 @@ export function CopilotChatInput() {
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder={t("placeholder")}
-        aria-label={t("placeholder")}
+        placeholder={t.placeholder}
+        aria-label={t.placeholder}
         className="min-w-0 flex-1 bg-transparent px-1 text-xs outline-none placeholder:opacity-50"
         style={{ color: "var(--color-editor-text)" }}
       />
       <button
         type="submit"
         disabled={!canSend}
-        aria-label={t("send")}
+        aria-label={t.send}
         className="grid h-7 w-7 shrink-0 place-items-center rounded-md transition-opacity disabled:opacity-40"
         style={{
           background: canSend ? "var(--color-copilot-accent)" : "transparent",

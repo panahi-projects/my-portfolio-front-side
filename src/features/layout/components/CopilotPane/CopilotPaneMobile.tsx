@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
 import { AnimatePresence, motion, useDragControls, type PanInfo } from "framer-motion";
 import { VscChromeClose, VscClearAll, VscMenu, VscSparkle } from "react-icons/vsc";
 import { useCopilotPane } from "./hooks/useCopilotPane";
 import { CopilotChatMessage } from "./CopilotChatMessage";
 import { CopilotChatInput } from "./CopilotChatInput";
+import { common } from "@/content/common";
 
 /**
  * Mobile Copilot pane — a full-screen overlay (per copilot-mobile.png) that
@@ -16,13 +16,13 @@ import { CopilotChatInput } from "./CopilotChatInput";
  * + CopilotChatInput.
  */
 export function CopilotPaneMobile() {
-  const t = useTranslations("common");
-  const tc = useTranslations("common.copilot");
+  const t = common;
+  const tc = common.copilot;
   const { isOpen, close, messages, isThinking, sendMessage, clearMessages } = useCopilotPane();
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const dragControls = useDragControls();
-  const suggestions = (tc.raw("suggestions") as string[]) ?? [];
+  const suggestions = tc.suggestions ?? [];
   const hasMessages = messages.length > 0;
 
   // Auto-scroll to the latest message (or thinking indicator) on append.
@@ -65,7 +65,7 @@ export function CopilotPaneMobile() {
           style={{ background: "var(--color-copilot-bg)", color: "var(--color-editor-text)" }}
           role="dialog"
           aria-modal="true"
-          aria-label={tc("title")}
+          aria-label={tc.title}
         >
           {/* Top bar — mirrors MobileNav, doubles as the swipe handle */}
           <header
@@ -80,13 +80,13 @@ export function CopilotPaneMobile() {
             <button
               type="button"
               onClick={close}
-              aria-label={tc("close")}
+              aria-label={tc.close}
               className="grid h-9 w-9 place-items-center"
             >
               <VscMenu className="h-5 w-5" aria-hidden="true" />
             </button>
             <span className="truncate font-medium" style={{ color: "var(--color-editor-text)" }}>
-              {tc("path")}
+              {tc.path}
             </span>
             <div className="ms-auto flex items-center gap-1">
               <span
@@ -99,7 +99,7 @@ export function CopilotPaneMobile() {
               <button
                 type="button"
                 onClick={close}
-                aria-label={tc("close")}
+                aria-label={tc.close}
                 className="grid h-9 w-9 place-items-center rounded"
                 style={{ background: "var(--color-sidebar-hover)" }}
               >
@@ -122,12 +122,12 @@ export function CopilotPaneMobile() {
               style={{ color: "var(--color-copilot-accent)" }}
               aria-hidden="true"
             />
-            <span className="min-w-0 flex-1 truncate text-xs font-semibold">{tc("subtitle")}</span>
+            <span className="min-w-0 flex-1 truncate text-xs font-semibold">{tc.subtitle}</span>
             {hasMessages && (
               <button
                 type="button"
                 onClick={clearMessages}
-                aria-label={tc("clear")}
+                aria-label={tc.clear}
                 className="grid h-7 w-7 place-items-center rounded"
                 style={{ color: "var(--color-editor-text)", opacity: 0.6 }}
               >
@@ -142,7 +142,7 @@ export function CopilotPaneMobile() {
             style={{ borderBottom: "1px solid var(--color-copilot-border)" }}
           >
             <span className="font-medium tracking-wider uppercase opacity-50">
-              {tc("workspace")}
+              {tc.workspace}
             </span>
             <span
               className="flex items-center gap-1.5 rounded px-2 py-1"
@@ -154,7 +154,7 @@ export function CopilotPaneMobile() {
                 aria-hidden="true"
               />
               <span style={{ color: "var(--color-statusbar-text)" }}>
-                {t("sidebar.portfolio").toLowerCase()} · {t("app.repo")}
+                {t.sidebar.portfolio.toLowerCase()} · {t.app.repo}
               </span>
             </span>
           </div>
@@ -174,8 +174,8 @@ export function CopilotPaneMobile() {
                   />
                 </span>
                 <div className="text-center">
-                  <p className="text-base font-bold">{tc("title")} 👋</p>
-                  <p className="mt-1.5 text-xs leading-relaxed opacity-60">{tc("welcome")}</p>
+                  <p className="text-base font-bold">{tc.title} 👋</p>
+                  <p className="mt-1.5 text-xs leading-relaxed opacity-60">{tc.welcome}</p>
                 </div>
                 <div className="grid w-full grid-cols-2 gap-2">
                   {suggestions.map((chip) => (
@@ -229,7 +229,7 @@ export function CopilotPaneMobile() {
             style={{ borderTop: "1px solid var(--color-copilot-border)" }}
           >
             <CopilotChatInput />
-            <p className="text-center text-[10px] opacity-40">{tc("disclaimer")}</p>
+            <p className="text-center text-[10px] opacity-40">{tc.disclaimer}</p>
           </div>
         </motion.div>
       )}

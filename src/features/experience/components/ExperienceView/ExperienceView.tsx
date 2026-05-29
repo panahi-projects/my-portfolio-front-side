@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { experience } from "@/content/experience";
 import type { ExperienceData } from "@/features/experience/types";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -12,21 +12,21 @@ function formatMonth(value: string): string {
 }
 
 export async function ExperienceView({ data }: { data: ExperienceData }) {
-  const t = await getTranslations("experience");
+  const t = experience;
 
   return (
     <div className="mx-auto w-full max-w-4xl px-6 py-8 md:px-10 md:py-12">
       {/* TS code-comment banner */}
-      <p className="font-mono text-sm text-green-400 md:text-base">{t("banner")}</p>
+      <p className="font-mono text-sm text-green-400 md:text-base">{t.banner}</p>
 
       {/* Heading + interface subtitle */}
       <h1
         className="mt-4 text-4xl font-bold tracking-tight md:text-6xl"
         style={{ color: "var(--color-editor-text)" }}
       >
-        {t("title")}
+        {t.title}
       </h1>
-      <p className="mt-2 font-mono text-sm opacity-50 md:text-base">{t("interfaceLine")}</p>
+      <p className="mt-2 font-mono text-sm opacity-50 md:text-base">{t.interfaceLine}</p>
 
       {/* Timeline */}
       <ul className="relative mt-10">
@@ -39,7 +39,7 @@ export async function ExperienceView({ data }: { data: ExperienceData }) {
 
         {data.experiences.map((exp) => {
           const range = `${formatMonth(exp.startDate)} - ${
-            exp.current || !exp.endDate ? t("present") : formatMonth(exp.endDate)
+            exp.current || !exp.endDate ? t.present : formatMonth(exp.endDate)
           }`;
           return (
             <li key={`${exp.company}-${exp.startDate}`} className="relative ps-8 pb-10">

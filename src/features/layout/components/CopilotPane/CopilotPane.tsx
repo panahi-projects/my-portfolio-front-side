@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { VscChromeClose, VscClearAll, VscSparkle } from "react-icons/vsc";
 import { useCopilotPane } from "./hooks/useCopilotPane";
 import { CopilotChatMessage } from "./CopilotChatMessage";
 import { CopilotChatInput } from "./CopilotChatInput";
-import { useDirection } from "@/shared/hooks/useDirection";
+import { common } from "@/content/common";
+
+// The pane is anchored to the inline-end edge; this is its hidden slide offset.
+const hiddenEnd = "100%";
 
 /**
  * Desktop Copilot pane — a slide-in right panel that splits the editor column
@@ -15,12 +17,11 @@ import { useDirection } from "@/shared/hooks/useDirection";
  * only appears on desktop. AnimatePresence keeps the slide-out animation.
  */
 export function CopilotPane() {
-  const t = useTranslations("common.copilot");
+  const t = common.copilot;
   const { isOpen, close, messages, isThinking, sendMessage, clearMessages } = useCopilotPane();
 
   const bottomRef = useRef<HTMLDivElement>(null);
-  const { hiddenEnd } = useDirection();
-  const suggestions = (t.raw("suggestions") as string[]) ?? [];
+  const suggestions = t.suggestions ?? [];
   const hasMessages = messages.length > 0;
 
   // Auto-scroll to the latest message (or thinking indicator) on append.
@@ -46,7 +47,7 @@ export function CopilotPane() {
             borderColor: "var(--color-copilot-border)",
             color: "var(--color-editor-text)",
           }}
-          aria-label={t("title")}
+          aria-label={t.title}
         >
           {/* Header */}
           <header
@@ -64,15 +65,15 @@ export function CopilotPane() {
               <VscSparkle className="h-4 w-4" style={{ color: "var(--color-copilot-header-bg)" }} />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-semibold">{t("title")}</p>
-              <p className="truncate text-[10px] opacity-50">{t("subtitle")}</p>
+              <p className="truncate text-xs font-semibold">{t.title}</p>
+              <p className="truncate text-[10px] opacity-50">{t.subtitle}</p>
             </div>
             {hasMessages && (
               <button
                 type="button"
                 onClick={clearMessages}
-                aria-label={t("clear")}
-                title={t("clear")}
+                aria-label={t.clear}
+                title={t.clear}
                 className="grid h-7 w-7 place-items-center rounded transition-colors hover:opacity-100"
                 style={{ color: "var(--color-editor-text)", opacity: 0.6 }}
               >
@@ -82,8 +83,8 @@ export function CopilotPane() {
             <button
               type="button"
               onClick={close}
-              aria-label={t("close")}
-              title={t("close")}
+              aria-label={t.close}
+              title={t.close}
               className="grid h-7 w-7 place-items-center rounded transition-colors hover:opacity-100"
               style={{ color: "var(--color-editor-text)", opacity: 0.6 }}
             >
@@ -100,7 +101,7 @@ export function CopilotPane() {
                   className="rounded-lg px-3 py-2.5 text-xs leading-relaxed"
                   style={{ background: "var(--color-copilot-ai-bubble)" }}
                 >
-                  {t("welcome")}
+                  {t.welcome}
                 </div>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {suggestions.map((chip) => (

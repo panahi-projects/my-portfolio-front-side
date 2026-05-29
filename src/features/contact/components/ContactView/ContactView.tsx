@@ -1,5 +1,5 @@
-import { getTranslations } from "next-intl/server";
 import { VscChevronRight } from "react-icons/vsc";
+import { contact } from "@/content/contact";
 import type { ContactData } from "@/features/contact/types";
 import { getIcon } from "@/features/home/constants/icons";
 import { ContactForm } from "@/features/contact/components/ContactForm";
@@ -27,26 +27,26 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 export async function ContactView({ data }: { data: ContactData }) {
-  const t = await getTranslations("contact");
+  const t = contact;
 
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-8 md:px-10 md:py-12">
       {/* CSS code-comment banner */}
-      <p className="font-mono text-sm text-green-400 md:text-base">{t("banner")}</p>
+      <p className="font-mono text-sm text-green-400 md:text-base">{t.banner}</p>
 
       {/* Heading + subtitle */}
       <h1
         className="mt-4 text-4xl font-bold tracking-tight md:text-6xl"
         style={{ color: "var(--color-editor-text)" }}
       >
-        {t("title")}
+        {t.title}
       </h1>
-      <p className="mt-2 font-mono text-sm opacity-50 md:text-base">{`// ${t("subtitle")}`}</p>
+      <p className="mt-2 font-mono text-sm opacity-50 md:text-base">{`// ${t.subtitle}`}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
         {/* Left — find me on */}
         <section>
-          <SectionHeading>{t("findMeOn")}</SectionHeading>
+          <SectionHeading>{t.findMeOn}</SectionHeading>
           <ul className="mt-4 flex flex-col gap-3">
             {data.socialLinks.map((link) => {
               const Icon = getIcon(link.icon);
@@ -94,7 +94,7 @@ export async function ContactView({ data }: { data: ContactData }) {
 
         {/* Right — send a message */}
         <section>
-          <SectionHeading>{t("sendMessage")}</SectionHeading>
+          <SectionHeading>{t.sendMessage}</SectionHeading>
           <div className="mt-4">
             <ContactForm />
           </div>

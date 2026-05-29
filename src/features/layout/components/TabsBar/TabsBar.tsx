@@ -1,7 +1,6 @@
 "use client";
 
 import type { KeyboardEvent, MouseEvent } from "react";
-import { useTranslations } from "next-intl";
 import { VscClose } from "react-icons/vsc";
 import { useTabs } from "@/shared/hooks/useTabs";
 import {
@@ -10,12 +9,12 @@ import {
   type PageKey,
   type PageMeta,
 } from "@/features/layout/constants/pages";
-import { usePathname } from "@/i18n/navigation";
+import { usePathname } from "next/navigation";
+import { common } from "@/content/common";
 
 const PAGES_BY_KEY = Object.fromEntries(PAGES.map((p) => [p.key, p])) as Record<string, PageMeta>;
 
 export function TabsBar() {
-  const t = useTranslations("common");
   const { openTabs, activeTab, switchTab, closeTab } = useTabs();
   const pathname = usePathname();
   const breadcrumbPage = activeTab ? PAGES_BY_KEY[activeTab] : findPageByPath(pathname);
@@ -33,12 +32,12 @@ export function TabsBar() {
         className="flex h-9 items-stretch"
         style={{ background: "var(--color-tabs-bg)", color: "var(--color-sidebar-text)" }}
         role="tablist"
-        aria-label={t("a11y.openTabs")}
+        aria-label={common.a11y.openTabs}
       >
         <div className="flex min-w-0 flex-1 overflow-x-auto">
           {openTabs.length === 0 ? (
             <div className="flex items-center px-3 text-[11px] italic opacity-60">
-              {t("tabs.welcome")}
+              {common.tabs.welcome}
             </div>
           ) : (
             openTabs.map((key) => {
@@ -79,8 +78,8 @@ export function TabsBar() {
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") handleClose(e, key);
                     }}
-                    title={t("tabs.close")}
-                    aria-label={t("tabs.close")}
+                    title={common.tabs.close}
+                    aria-label={common.tabs.close}
                     className="ms-1 grid h-4 w-4 place-items-center rounded opacity-60 hover:bg-white/10 hover:opacity-100"
                   >
                     <VscClose className="h-3 w-3" aria-hidden="true" />
@@ -102,7 +101,7 @@ export function TabsBar() {
             borderBottom: "1px solid var(--color-border)",
           }}
         >
-          <span>{t("app.repo")}</span>
+          <span>{common.app.repo}</span>
           <span className="opacity-60">›</span>
           <span>src</span>
           <span className="opacity-60">›</span>

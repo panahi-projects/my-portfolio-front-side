@@ -1,14 +1,3 @@
-// Server views call `getTranslations` from next-intl/server — back it with the
-// real EN messages so we can unit-render them in jsdom.
-jest.mock("next-intl/server", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports -- jest.mock factories are hoisted; can't use module-scope imports
-  const { makeT } = require("@/test-utils/intl");
-  return {
-    getTranslations: jest.fn(async (ns: string) => makeT(ns)),
-    setRequestLocale: jest.fn(),
-  };
-});
-
 import { renderWithProviders, screen } from "@/test-utils/render";
 
 import { HomeHero } from "@/features/home/components/HomeHero";

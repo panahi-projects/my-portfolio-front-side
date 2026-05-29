@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
+import { home } from "@/content/home";
 import type { HomeData } from "@/features/home/types";
 import { getIcon } from "@/features/home/constants/icons";
 import { TypingTagline } from "@/features/home/components/TypingTagline";
@@ -26,12 +26,12 @@ function highlight(text: string, keywords: string[]): ReactNode {
 }
 
 export async function HomeHero({ data }: { data: HomeData }) {
-  const t = await getTranslations("home");
+  const t = home;
 
   return (
     <div className="mx-auto w-full max-w-6xl px-6 py-8 md:px-10 md:py-12">
       {/* Green code-comment banner */}
-      <p className="font-mono text-sm text-green-400 md:text-base">{t("banner")}</p>
+      <p className="font-mono text-sm text-green-400 md:text-base">{t.banner}</p>
 
       {/* Name */}
       <h1 className="mt-4 text-5xl leading-[1.05] font-bold tracking-tight md:text-7xl">

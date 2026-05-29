@@ -1,9 +1,9 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { VscSparkle } from "react-icons/vsc";
 import { useCopilotPane } from "./hooks/useCopilotPane";
+import { common } from "@/content/common";
 
 interface CopilotPaneTriggerProps {
   /** Optional visual size variant. "compact" suits the desktop sidebar slot;
@@ -16,7 +16,7 @@ export function CopilotPaneTrigger({
   variant = "compact",
   className = "",
 }: CopilotPaneTriggerProps) {
-  const t = useTranslations("common.copilot");
+  const t = common.copilot;
   const { isOpen, toggle } = useCopilotPane();
 
   const paddingY = variant === "expanded" ? "py-3" : "py-2";
@@ -26,7 +26,7 @@ export function CopilotPaneTrigger({
       type="button"
       onClick={toggle}
       aria-pressed={isOpen}
-      aria-label={t("triggerLabel")}
+      aria-label={t.triggerLabel}
       className={`flex w-full items-center gap-2 rounded-md border px-3 ${paddingY} text-xs transition-colors ${className}`}
       style={{
         borderColor: isOpen ? "var(--color-copilot-accent)" : "var(--color-border)",
@@ -63,7 +63,7 @@ export function CopilotPaneTrigger({
       >
         <VscSparkle className="h-4 w-4" style={{ color: "var(--color-copilot-accent)" }} />
       </motion.span>
-      <span className="flex-1 truncate text-start">{t("triggerLabel")}</span>
+      <span className="flex-1 truncate text-start">{t.triggerLabel}</span>
       <span
         className="rounded px-1 text-[10px] tracking-wide opacity-70"
         style={{ background: "var(--color-sidebar-bg)" }}

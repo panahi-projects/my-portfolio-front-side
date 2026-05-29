@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import { useRouter, usePathname } from "@/i18n/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { PAGES, findPageByPath, type PageKey } from "@/features/layout/constants/pages";
 
 const TABS_STORAGE_KEY = "portfolio-open-tabs";

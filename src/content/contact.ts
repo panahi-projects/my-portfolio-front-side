@@ -1,0 +1,21 @@
+export const contact = {
+  title: "Contact",
+  subtitle: "open to work, collabs & good conversations",
+  banner: "/* contact.css — let's build something */",
+  findMeOn: "Find me on",
+  sendMessage: "Send a message",
+  form: {
+    name: "YOUR_NAME",
+    email: "YOUR_EMAIL",
+    subject: "SUBJECT",
+    message: "MESSAGE",
+    stringPlaceholder: "string",
+    messagePlaceholder: "'''your message'''",
+    submit: "send_message()",
+    sending: "sending...",
+    required: "required",
+    invalidEmail: "enter a valid email",
+    success: "Message sent! I'll get back to you soon.",
+  },
+  footer: "// mock submit for now — wired to a real inbox later :)",
+} as const;

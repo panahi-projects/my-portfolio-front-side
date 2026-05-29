@@ -1,24 +1,24 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { VscCheck } from "react-icons/vsc";
+import { contact } from "@/content/contact";
 
 export function ContactForm() {
-  const t = useTranslations("contact");
+  const t = contact;
   const [sent, setSent] = useState(false);
 
   const schema = useMemo(
     () =>
       z.object({
-        name: z.string().min(1, t("form.required")),
-        email: z.email(t("form.invalidEmail")),
+        name: z.string().min(1, t.form.required),
+        email: z.email(t.form.invalidEmail),
         subject: z.string().optional(),
-        message: z.string().min(1, t("form.required")),
+        message: z.string().min(1, t.form.required),
       }),
     [t]
   );
@@ -52,7 +52,7 @@ export function ContactForm() {
 
   const renderLabel = (field: "name" | "email" | "subject" | "message", required: boolean) => (
     <label className="mb-1.5 block font-mono text-xs opacity-70">
-      {`// ${t(`form.${field}`)} `}
+      {`// ${t.form[field]} `}
       {required && <span style={{ color: "#ef4444" }}>*</span>}
     </label>
   );
@@ -70,7 +70,7 @@ export function ContactForm() {
         {renderLabel("name", true)}
         <input
           type="text"
-          placeholder={t("form.stringPlaceholder")}
+          placeholder={t.form.stringPlaceholder}
           className="w-full rounded-md border px-3 py-2 text-sm outline-none placeholder:opacity-40 focus:border-[var(--color-accent)]"
           style={inputStyle}
           aria-invalid={!!errors.name}
@@ -83,7 +83,7 @@ export function ContactForm() {
         {renderLabel("email", true)}
         <input
           type="email"
-          placeholder={t("form.stringPlaceholder")}
+          placeholder={t.form.stringPlaceholder}
           className="w-full rounded-md border px-3 py-2 text-sm outline-none placeholder:opacity-40 focus:border-[var(--color-accent)]"
           style={inputStyle}
           aria-invalid={!!errors.email}
@@ -96,7 +96,7 @@ export function ContactForm() {
         {renderLabel("subject", false)}
         <input
           type="text"
-          placeholder={t("form.stringPlaceholder")}
+          placeholder={t.form.stringPlaceholder}
           className="w-full rounded-md border px-3 py-2 text-sm outline-none placeholder:opacity-40 focus:border-[var(--color-accent)]"
           style={inputStyle}
           {...register("subject")}
@@ -107,7 +107,7 @@ export function ContactForm() {
         {renderLabel("message", true)}
         <textarea
           rows={4}
-          placeholder={t("form.messagePlaceholder")}
+          placeholder={t.form.messagePlaceholder}
           className="w-full resize-y rounded-md border px-3 py-2 text-sm outline-none placeholder:opacity-40 focus:border-[var(--color-accent)]"
           style={inputStyle}
           aria-invalid={!!errors.message}
@@ -123,7 +123,7 @@ export function ContactForm() {
         style={{ background: "var(--color-accent)", color: "var(--color-editor-bg)" }}
       >
         <span aria-hidden="true">→</span>
-        <span>{isSubmitting ? t("form.sending") : t("form.submit")}</span>
+        <span>{isSubmitting ? t.form.sending : t.form.submit}</span>
       </button>
 
       <AnimatePresence>
@@ -137,12 +137,12 @@ export function ContactForm() {
             role="status"
           >
             <VscCheck className="h-4 w-4" aria-hidden="true" />
-            {t("form.success")}
+            {t.form.success}
           </motion.p>
         )}
       </AnimatePresence>
 
-      <p className="font-mono text-[11px] opacity-40">{t("footer")}</p>
+      <p className="font-mono text-[11px] opacity-40">{t.footer}</p>
     </form>
   );
 }

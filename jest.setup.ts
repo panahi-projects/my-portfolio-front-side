@@ -1,31 +1,34 @@
 import "@testing-library/jest-dom";
 import type { ReactNode } from "react";
 
-// next-intl's localized navigation has no real Next.js router in jsdom, so mock
-// it with controllable stubs. usePathname defaults to "/" (overridable per test);
+// next/navigation has no real Next.js router in jsdom, so mock it with
+// controllable stubs. usePathname defaults to "/" (overridable per test);
 // useRouter returns a stable object so tests can assert on push/replace.
-jest.mock("@/i18n/navigation", () => {
+const __router = {
+  push: jest.fn(),
+  replace: jest.fn(),
+  prefetch: jest.fn(),
+  back: jest.fn(),
+  forward: jest.fn(),
+  refresh: jest.fn(),
+};
+jest.mock("next/navigation", () => ({
+  __router,
+  usePathname: jest.fn(() => "/"),
+  useRouter: jest.fn(() => __router),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
+  redirect: jest.fn(),
+  notFound: jest.fn(),
+}));
+
+// next/link needs no router context for our tests; render a plain anchor.
+jest.mock("next/link", () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports -- jest.mock factories are hoisted; can't use module-scope imports
   const React = require("react");
-  const router = {
-    push: jest.fn(),
-    replace: jest.fn(),
-    prefetch: jest.fn(),
-    back: jest.fn(),
-    forward: jest.fn(),
-    refresh: jest.fn(),
-  };
   const Link = ({ href, children, ...rest }: { href: unknown; children: ReactNode }) =>
     React.createElement("a", { href: typeof href === "string" ? href : "#", ...rest }, children);
   Link.displayName = "MockLink";
-  return {
-    __router: router,
-    usePathname: jest.fn(() => "/"),
-    useRouter: jest.fn(() => router),
-    redirect: jest.fn(),
-    getPathname: jest.fn(() => "/"),
-    Link,
-  };
+  return { __esModule: true, default: Link };
 });
 
 // jsdom doesn't implement scrollIntoView; the Copilot panes call it on new messages.
@@ -51,7 +54,7 @@ beforeEach(() => {
   // ThemeProvider writes to <html data-theme>; reset so each test starts clean.
   delete document.documentElement.dataset.theme;
   (window.HTMLElement.prototype.scrollIntoView as jest.Mock).mockClear();
-  const nav = jest.requireMock("@/i18n/navigation") as {
+  const nav = jest.requireMock("next/navigation") as {
     usePathname: jest.Mock;
     useRouter: jest.Mock;
     __router: Record<string, jest.Mock>;

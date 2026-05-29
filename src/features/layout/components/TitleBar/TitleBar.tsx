@@ -1,11 +1,9 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { VscSearch } from "react-icons/vsc";
+import { common } from "@/content/common";
 
 export function TitleBar() {
-  const t = useTranslations("common");
-
   return (
     <header
       className="relative flex h-8 shrink-0 items-center px-3 text-xs select-none"
@@ -26,7 +24,7 @@ export function TitleBar() {
           style={{ background: "var(--color-editor-bg)", borderColor: "var(--color-border)" }}
         >
           <VscSearch className="h-3.5 w-3.5 opacity-70" aria-hidden="true" />
-          <span className="flex-1 truncate text-center opacity-80">{t("app.fileTitle")}</span>
+          <span className="flex-1 truncate text-center opacity-80">{common.app.fileTitle}</span>
           <span
             className="flex shrink-0 items-center gap-1 rounded px-1 text-[10px] tracking-wide opacity-70"
             style={{ background: "var(--color-sidebar-hover)" }}

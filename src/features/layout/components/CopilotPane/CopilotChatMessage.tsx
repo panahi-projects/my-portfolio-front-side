@@ -1,15 +1,15 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { VscAccount, VscSparkle } from "react-icons/vsc";
 import type { CopilotMessage } from "@/features/layout/context/CopilotContext";
+import { common } from "@/content/common";
 
 /**
  * A single chat bubble. User messages align to the end with the user-bubble
  * token; assistant messages align to the start with the AI-bubble token.
  */
 export function CopilotChatMessage({ message }: { message: CopilotMessage }) {
-  const t = useTranslations("common.copilot");
+  const t = common.copilot;
   const isUser = message.role === "user";
 
   return (
@@ -27,7 +27,7 @@ export function CopilotChatMessage({ message }: { message: CopilotMessage }) {
 
       <div className={`flex max-w-[80%] flex-col ${isUser ? "items-end" : "items-start"}`}>
         <span className="mb-1 text-[10px] tracking-wide uppercase opacity-50">
-          {isUser ? t("you") : t("assistant")}
+          {isUser ? t.you : t.assistant}
         </span>
         <div
           className="rounded-lg px-3 py-2 text-xs leading-relaxed"

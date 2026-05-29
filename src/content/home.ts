@@ -1,0 +1,7 @@
+export const home = {
+  banner: "// hello world !! Welcome to my portfolio",
+  headline: "Hello world, welcome to my portfolio",
+  ctaProjects: "Projects",
+  ctaAbout: "About Me",
+  ctaContact: "Contact",
+} as const;

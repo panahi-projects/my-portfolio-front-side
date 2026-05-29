@@ -1,24 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { VscMenu, VscClose, VscSettingsGear, VscSparkle, VscSearch } from "react-icons/vsc";
-import { Link, usePathname } from "@/i18n/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { common } from "@/content/common";
 import { PAGES, DECORATIVE_FILES, findPageByPath } from "@/features/layout/constants/pages";
 import { CopilotPaneTrigger, useCopilotPane } from "@/features/layout/components/CopilotPane";
 import { GitStatus } from "@/features/layout/components/GitStatus";
 import { useSettings } from "@/features/theme/hooks/useSettings";
-import { useDirection } from "@/shared/hooks/useDirection";
 
 export function MobileNav() {
-  const t = useTranslations("common");
   const pathname = usePathname();
   const activePage = findPageByPath(pathname);
   const [open, setOpen] = useState(false);
   const { toggle: toggleCopilot } = useCopilotPane();
   const { open: openSettings } = useSettings();
-  const { hiddenStart } = useDirection();
 
   // Close the drawer when the route changes (reset-on-change in render phase — no effect).
   const [lastPath, setLastPath] = useState(pathname);
@@ -55,7 +53,7 @@ export function MobileNav() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          aria-label={t("sidebar.explorer")}
+          aria-label={common.sidebar.explorer}
           aria-expanded={open}
           className="grid h-9 w-9 place-items-center"
         >
@@ -70,7 +68,7 @@ export function MobileNav() {
           <button
             type="button"
             onClick={toggleCopilot}
-            aria-label={t("copilot.title")}
+            aria-label={common.copilot.title}
             className="grid h-9 w-9 place-items-center rounded"
             style={{ background: "var(--color-sidebar-hover)" }}
           >
@@ -82,7 +80,7 @@ export function MobileNav() {
           </button>
           <button
             type="button"
-            aria-label={t("search.placeholder")}
+            aria-label={common.search.placeholder}
             className="grid h-9 w-9 place-items-center rounded"
             style={{ background: "var(--color-sidebar-hover)" }}
           >
@@ -110,9 +108,9 @@ export function MobileNav() {
             />
             <motion.aside
               key="panel"
-              initial={{ x: hiddenStart }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: hiddenStart }}
+              exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.22 }}
               className="fixed inset-y-0 start-0 z-50 flex w-80 max-w-[85vw] flex-col md:hidden"
               style={{
@@ -122,14 +120,14 @@ export function MobileNav() {
               }}
               role="dialog"
               aria-modal="true"
-              aria-label={t("sidebar.explorer")}
+              aria-label={common.sidebar.explorer}
             >
               <div
                 className="flex items-center justify-between px-4 py-3 text-sm"
                 style={{ borderBottom: "1px solid var(--color-border)" }}
               >
                 <span className="text-[11px] font-medium tracking-wider uppercase opacity-70">
-                  {t("sidebar.explorer")}
+                  {common.sidebar.explorer}
                 </span>
                 <div className="flex items-center gap-1">
                   <button
@@ -138,7 +136,7 @@ export function MobileNav() {
                       setOpen(false);
                       openSettings();
                     }}
-                    aria-label={t("settings.title")}
+                    aria-label={common.settings.title}
                     className="grid h-8 w-8 place-items-center rounded hover:bg-white/10"
                   >
                     <VscSettingsGear className="h-4 w-4" aria-hidden="true" />
@@ -146,7 +144,7 @@ export function MobileNav() {
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
-                    aria-label={t("tabs.close")}
+                    aria-label={common.tabs.close}
                     className="grid h-8 w-8 place-items-center rounded hover:bg-white/10"
                   >
                     <VscClose className="h-5 w-5" aria-hidden="true" />
@@ -155,7 +153,7 @@ export function MobileNav() {
               </div>
 
               <div className="px-4 py-2 text-[11px] font-medium tracking-wider uppercase opacity-70">
-                {t("app.repo").toUpperCase()}
+                {common.app.repo.toUpperCase()}
               </div>
 
               <ul className="flex-1 overflow-y-auto pb-2 text-sm">
@@ -187,7 +185,7 @@ export function MobileNav() {
                           aria-hidden="true"
                         />
                         <span className="truncate">{filename}</span>
-                        <span className="sr-only">{t(`nav.${navKey}`)}</span>
+                        <span className="sr-only">{common.nav[navKey]}</span>
                       </Link>
                     </li>
                   );

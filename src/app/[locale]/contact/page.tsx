@@ -1,13 +1,10 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
+import { getContactData } from "@/services/api/contact.service";
+import { ContactView } from "@/features/contact/components/ContactView";
 
 export default async function ContactPage({ params }: PageProps<"/[locale]/contact">) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("contact");
-  return (
-    <section className="p-8">
-      <h1 className="text-4xl font-bold">{t("title")}</h1>
-      <p className="mt-2 opacity-70">{t("subtitle")}</p>
-    </section>
-  );
+  const data = await getContactData();
+  return <ContactView data={data} />;
 }

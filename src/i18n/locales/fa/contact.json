@@ -1,4 +1,21 @@
 {
   "title": "تماس",
-  "subtitle": "آماده‌ی همکاری، گفتگو و فرصت‌های جدید"
+  "subtitle": "آماده‌ی همکاری، گفتگو و فرصت‌های جدید",
+  "banner": "/* contact.css — let's build something */",
+  "findMeOn": "من را اینجا پیدا کن",
+  "sendMessage": "یک پیام بفرست",
+  "form": {
+    "name": "YOUR_NAME",
+    "email": "YOUR_EMAIL",
+    "subject": "SUBJECT",
+    "message": "MESSAGE",
+    "stringPlaceholder": "string",
+    "messagePlaceholder": "'''your message'''",
+    "submit": "send_message()",
+    "sending": "در حال ارسال...",
+    "required": "الزامی",
+    "invalidEmail": "یک ایمیل معتبر وارد کن",
+    "success": "پیام ارسال شد! به‌زودی پاسخ می‌دهم."
+  },
+  "footer": "// فعلاً ارسال آزمایشی — بعداً به صندوق واقعی وصل می‌شود :)"
 }

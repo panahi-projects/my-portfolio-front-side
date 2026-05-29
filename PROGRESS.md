@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-15 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-16 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 16 — Contact page.
+**Next up:** Phase 17 — Fill all i18n keys.
 
 ---
 
@@ -132,19 +132,11 @@ src/
 | 13 | About page | `feat(about): implement About page with bio, current focus, education, and CV download` | `about/page.tsx` (server) fetches `getAboutData()` → renders `AboutView` (async server component); green HTML-comment banner (`about.banner`), "About Me" heading + `// who I am · …` subtitle, bio card (availability dot + location + accent keyword highlighting), CURRENT FOCUS 2-col emoji grid, EDUCATION list (🎓 + institution/degree/period), Download CV button (`VscCloudDownload` → `cvUrl`); teal `SectionHeading` (#4ec9b0); added `about.{banner,currentFocus,education,downloadCv}` i18n keys (EN+FA). Verified via build static prerender of `/en/about` + `/fa/about`. |
 | 14 | Skills page | `feat(skills): implement Skills page with animated proficiency bars and category grid` | `skills/page.tsx` (server) fetches `getSkillsData()` → renders `SkillsView` (async server); green JSON-comment banner (`skills.banner`), "Skills" heading + JSON subtitle (`skills.jsonSubtitle`), 2-col category grid (accent uppercase heading + divider), each skill row = client `SkillBar` (name · animated fill · %); `SkillBar` uses `framer-motion useInView({once})` to fill 0→proficiency on scroll-in (logical `start`-anchored, RTL-safe), `role=progressbar` a11y; vibrant cycling palette in `skills/constants/colors.ts`; added `skills.{banner,jsonSubtitle}` i18n keys (EN+FA). Verified via build static prerender. |
 | 15 | Experience page | `feat(experience): implement Experience page with vertical timeline and tech stacks` | `experience/page.tsx` (server) fetches `getExperienceData()` → renders `ExperienceView` (async server); green TS-comment banner (`experience.banner`), "Experience" heading + `interface Career extends Timeline {}` subtitle (`experience.interfaceLine`); vertical timeline with single logical `start`-anchored spine + per-entry node (filled = `current`, ring = past), `formatMonth("YYYY-MM"→"Mon YYYY")`, `present` i18n for current end; each entry: date range, role, `@ company · location`, achievements paragraph, tech-stack chips; added `experience.{banner,interfaceLine,present}` i18n keys (EN+FA). Verified via build static prerender. |
+| 16 | Contact page | `feat(contact): implement Contact page with social links and validated message form` | `contact/page.tsx` (server) fetches `getContactData()` → renders `ContactView` (async server); green CSS-comment banner (`contact.banner`), "Contact" heading + `// open to work…` subtitle; 2-col grid — left FIND ME ON cards (reuses home `getIcon`, per-slug brand colors, handle + chevron), right `ContactForm` (client); `ContactForm` = react-hook-form + `zodResolver` (zod v4 `z.email()`), localized error messages, `// FIELD *` labels, `→ send_message()` button, mock 700ms submit → success toast auto-hidden via `sent`-watching effect (no ref → lint-clean); added `contact.{banner,findMeOn,sendMessage,form.*,footer}` i18n keys (EN+FA). Verified via build static prerender. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 16 — Contact page
-**Reference:** `.claude/screenshots/5-page-contact.png`
-- CSS-comment banner `/* contact.css — let's build something */`
-- Heading + subtitle `// open to work, collabs & good conversations`
-- **Left col — FIND ME ON**: Email / LinkedIn / GitHub / Medium / Tableau / LeetCode cards
-- **Right col — SEND A MESSAGE**: form with `// YOUR_NAME *` / `// YOUR_EMAIL *` / `// SUBJECT` / `// MESSAGE *` field labels
-- `react-hook-form` + `zod`; mock send + success toast
-- Submit button styled `→ send_message()`
 
 ### Phase 17 — Fill all i18n keys
 **Suggested commit:** `feat(i18n): complete EN and FA translation keys for all pages and UI components`

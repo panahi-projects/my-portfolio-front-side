@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-22 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green (13 suites / 36 tests). On branch `main`.
+**Current state:** Phases 1-24 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green (13 suites / 36 tests). On branch `main`.
 
-**Next up:** Phase 23 — README.md.
+**Next up:** Phase 25 — lint/type fixes + polish (final).
 
 ---
 
@@ -139,20 +139,12 @@ src/
 | 20 | Theme + settings tests | `test(theme): add unit tests for ThemeContext, useTheme, and SettingsPanel` | `ThemeContext`: `setTheme` syncs `<html data-theme>` + `localStorage[portfolio-theme]` + context value. `useTheme`: throws outside provider (console.error spied). `SettingsPanel`: closed→`open()` shows dialogs; clicking a theme row applies it (`data-theme` + `aria-pressed`); active theme marked `aria-pressed=true`; clicking فارسی calls `router.replace("/", {locale:"fa"})`. Note: both desktop+mobile variants mount in jsdom (CSS-hidden only), so tests use `getAllByRole(...)[0]`. 2 suites / 6 tests. |
 | 21 | Copilot pane tests | `test(copilot): add unit tests for CopilotPane, CopilotPaneTrigger, and useCopilotPane` | `jest.setup.ts` mocks `HTMLElement.prototype.scrollIntoView` (jsdom lacks it). `CopilotContext`: persists open→localStorage; rehydrates open+messages on mount; `sendMessage` adds user bubble immediately + mock assistant after `advanceTimersByTime(1000)` (fake timers); `clearMessages` empties. `CopilotPaneTrigger`: toggles + `aria-pressed` + persistence. `CopilotPane`: welcome + suggestion chips, sending a chip replaces welcome with the user message, auto-scroll calls `scrollIntoView` on new message. 3 suites / 8 tests. |
 | 22 | Page + service tests | `test(pages): add unit tests for all page components and mock API services` | `services.test.ts`: each `get<Page>Data()` resolves to its typed mock (`toEqual`) + structural spot-checks. `pages.test.tsx`: renders each async server **view** by awaiting it (`await HomeHero({data})` …) with `next-intl/server` mocked via `makeT`; asserts mock content shows (name/heading/role/skill/company/social + ContactForm submit). Added jsdom stubs for `IntersectionObserver`/`ResizeObserver` (framer `useInView`). Kept lint at the 4-baseline (eslint-disable on the two `require()` jest.mock factories; named the jest.config default export). Full suite: 13 suites / 36 tests green; `next build` green. |
+| 23 | README.md | `docs: write README with setup guide, architecture overview, and contribution notes` | Replaced the create-next-app boilerplate with a full README: overview + hero screenshot, tech-stack rationale table, architecture (feature folders / service-layer seam / server-vs-client / single root layout) + folder tree, getting-started + scripts (incl. `start:dev` on 3001), how-to (add page / theme / language / swap mock→real API), testing, screenshots index, deployment. |
+| 24 | CLAUDE.md | `docs: write CLAUDE.md with full architecture map, conventions, and future development guide` | Replaced the `@AGENTS.md` stub (kept the import so the Next 16 warning persists) with a concise agent guide: architecture map, server-vs-client + styling/i18n/commit conventions, add-page/theme/reply/real-API checklists, Next-16 gotchas (proxy.ts, awaited params, global PageProps, no tailwind config), testing setup, and the build/test/lint verification gate. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 23 — README.md
-**Suggested commit:** `docs: write README with setup guide, architecture overview, and contribution notes`
-
-Sections: overview / tech stack rationale / architecture (feature-based, SOLID, service layer) / getting started / how to add a page / theme / language / how to swap mock → real API / folder structure / screenshots section linking `.claude/screenshots/` / deployment notes.
-
-### Phase 24 — CLAUDE.md
-**Suggested commit:** `docs: write CLAUDE.md with full architecture map, conventions, and future development guide`
-
-Current `CLAUDE.md` is just `@AGENTS.md`. Replace it with a comprehensive AI agent guide: architecture map, naming conventions, theme/i18n/api guides, step-by-step checklists for adding features, all the gotchas in this PROGRESS.md.
 
 ### Phase 25 — Lint/type fixes + polish
 **Suggested commit:** `fix(polish): resolve lint errors, type issues, and apply final responsive/visual adjustments`

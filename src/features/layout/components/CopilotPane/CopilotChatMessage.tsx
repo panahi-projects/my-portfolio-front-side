@@ -36,8 +36,9 @@ export function CopilotChatMessage({ message }: { message: CopilotMessage }) {
               ? "var(--color-copilot-user-bubble)"
               : "var(--color-copilot-ai-bubble)",
             color: "var(--color-editor-text)",
-            borderTopRightRadius: isUser ? 2 : undefined,
-            borderTopLeftRadius: isUser ? undefined : 2,
+            // Sharp corner faces the avatar (logical, so it flips in RTL).
+            borderStartStartRadius: isUser ? undefined : 2,
+            borderStartEndRadius: isUser ? 2 : undefined,
           }}
         >
           {message.content}

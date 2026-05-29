@@ -7,6 +7,7 @@ import { VscChromeClose, VscClearAll, VscSparkle } from "react-icons/vsc";
 import { useCopilotPane } from "./hooks/useCopilotPane";
 import { CopilotChatMessage } from "./CopilotChatMessage";
 import { CopilotChatInput } from "./CopilotChatInput";
+import { useDirection } from "@/shared/hooks/useDirection";
 
 /**
  * Desktop Copilot pane — a slide-in right panel that splits the editor column
@@ -18,6 +19,7 @@ export function CopilotPane() {
   const { isOpen, close, messages, isThinking, sendMessage, clearMessages } = useCopilotPane();
 
   const bottomRef = useRef<HTMLDivElement>(null);
+  const { hiddenEnd } = useDirection();
   const suggestions = (t.raw("suggestions") as string[]) ?? [];
   const hasMessages = messages.length > 0;
 
@@ -31,9 +33,9 @@ export function CopilotPane() {
       {isOpen && (
         <motion.aside
           key="copilot-pane"
-          initial={{ x: "100%", opacity: 0 }}
+          initial={{ x: hiddenEnd, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          exit={{ x: "100%", opacity: 0 }}
+          exit={{ x: hiddenEnd, opacity: 0 }}
           transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
           className="hidden min-h-0 shrink-0 flex-col border-s md:flex"
           style={{

@@ -15,6 +15,7 @@ import { PAGES, DECORATIVE_FILES, findPageByPath } from "@/features/layout/const
 import { CopilotPaneTrigger, useCopilotPane } from "@/features/layout/components/CopilotPane";
 import { GitStatus } from "@/features/layout/components/GitStatus";
 import { useSettings } from "@/features/theme/hooks/useSettings";
+import { useDirection } from "@/shared/hooks/useDirection";
 
 export function MobileNav() {
   const t = useTranslations("common");
@@ -23,6 +24,7 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   const { toggle: toggleCopilot } = useCopilotPane();
   const { open: openSettings } = useSettings();
+  const { hiddenStart } = useDirection();
 
   // Close on route change
   useEffect(() => {
@@ -112,9 +114,9 @@ export function MobileNav() {
             />
             <motion.aside
               key="panel"
-              initial={{ x: "-100%" }}
+              initial={{ x: hiddenStart }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              exit={{ x: hiddenStart }}
               transition={{ type: "tween", duration: 0.22 }}
               className="fixed inset-y-0 start-0 z-50 flex w-80 max-w-[85vw] flex-col md:hidden"
               style={{

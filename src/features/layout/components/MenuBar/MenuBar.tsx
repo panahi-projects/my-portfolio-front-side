@@ -35,7 +35,7 @@ export function MenuBar() {
             {isOpen ? (
               <div
                 role="menu"
-                className="absolute top-full left-0 z-50 mt-0.5 min-w-40 rounded border py-1 text-xs shadow-lg"
+                className="absolute top-full start-0 z-50 mt-0.5 min-w-40 rounded border py-1 text-xs shadow-lg"
                 style={{
                   background: "var(--color-sidebar-bg)",
                   borderColor: "var(--color-border)",

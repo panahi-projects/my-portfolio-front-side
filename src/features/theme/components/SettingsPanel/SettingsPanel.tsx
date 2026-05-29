@@ -22,6 +22,7 @@ import { routing, type AppLocale } from "@/i18n/routing";
 import { useTheme } from "@/features/theme/hooks/useTheme";
 import { useSettings } from "@/features/theme/hooks/useSettings";
 import { useCopilotPane } from "@/features/layout/components/CopilotPane";
+import { useDirection } from "@/shared/hooks/useDirection";
 
 const RESUME_HREF = "/Saeed_Panahi_Resume.pdf";
 
@@ -214,6 +215,7 @@ export function SettingsPanel() {
   const t = useTranslations("common.settings");
   const { isOpen, close } = useSettings();
   const { open: openCopilot } = useCopilotPane();
+  const { hiddenStart } = useDirection();
 
   // Close on Escape; lock body scroll while open.
   useEffect(() => {
@@ -346,9 +348,9 @@ export function SettingsPanel() {
           />
           <motion.aside
             key="settings-mobile"
-            initial={{ x: "-100%" }}
+            initial={{ x: hiddenStart }}
             animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
+            exit={{ x: hiddenStart }}
             transition={{ type: "tween", duration: 0.22 }}
             className="fixed inset-y-0 start-0 z-50 flex w-80 max-w-[85vw] flex-col overflow-y-auto md:hidden"
             style={{

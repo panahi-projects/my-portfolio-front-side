@@ -1,4 +1,7 @@
 {
   "title": "سوابق کاری",
-  "subtitle": "مسیر حرفه‌ای"
+  "subtitle": "مسیر حرفه‌ای",
+  "banner": "// experience.ts - professional journey",
+  "interfaceLine": "interface Career extends Timeline {}",
+  "present": "اکنون"
 }

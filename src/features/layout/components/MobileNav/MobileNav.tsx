@@ -14,6 +14,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { PAGES, DECORATIVE_FILES, findPageByPath } from "@/features/layout/constants/pages";
 import { CopilotPaneTrigger, useCopilotPane } from "@/features/layout/components/CopilotPane";
 import { GitStatus } from "@/features/layout/components/GitStatus";
+import { useSettings } from "@/features/theme/hooks/useSettings";
 
 export function MobileNav() {
   const t = useTranslations("common");
@@ -21,6 +22,7 @@ export function MobileNav() {
   const activePage = findPageByPath(pathname);
   const [open, setOpen] = useState(false);
   const { toggle: toggleCopilot } = useCopilotPane();
+  const { open: openSettings } = useSettings();
 
   // Close on route change
   useEffect(() => {
@@ -134,6 +136,10 @@ export function MobileNav() {
                 <div className="flex items-center gap-1">
                   <button
                     type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      openSettings();
+                    }}
                     aria-label={t("settings.title")}
                     className="grid h-8 w-8 place-items-center rounded hover:bg-white/10"
                   >

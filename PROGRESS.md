@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-9 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-10 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 10 — Settings panel.
+**Next up:** Phase 11 — Mock API service layer.
 
 ---
 
@@ -126,28 +126,11 @@ src/
 | 7 | Git status + Copilot trigger | `feat(sidebar): add git branch status indicator and Copilot trigger button` | `CopilotContext` (just `isOpen` for now), `useCopilotPane`, animated `CopilotPaneTrigger`, `GitStatus` component, mobile sparkle button now toggles Copilot |
 | 8 | Copilot Pane (desktop) | `feat(copilot): implement desktop Copilot Pane with mock chat interface and panel state persistence` | `CopilotContext` extended with `messages`/`isThinking`/`sendMessage`/`clearMessages` + `portfolio-copilot-messages` persistence; `mockReplies.ts` (10 replies); `CopilotPane` (slide-in 35% panel, welcome + 6 suggestion chips, auto-scroll, thinking dots), `CopilotChatMessage`, `CopilotChatInput`; `AppShell` editor column split into `<main>` + pane (md:+); added `copilot.{clear,you,assistant,suggestions}` i18n keys (EN+FA) |
 | 9 | Copilot Pane (mobile) | `feat(copilot): add mobile full-screen variant of Copilot Pane with swipe dismiss` | `CopilotPaneMobile` (approach b — `flex md:hidden` full-screen overlay rendered in `AppShell`); slides up + swipe-down-to-dismiss via `useDragControls` (header is the drag handle so list still scrolls), body-scroll lock; mirrors MobileNav top bar + identity row + workspace chip + disclaimer; reuses `CopilotChatMessage`/`CopilotChatInput`; added `copilot.{workspace,path,disclaimer}` i18n keys (EN+FA) |
+| 10 | Settings panel | `feat(settings): build Settings Panel with theme switcher and language toggle for desktop and mobile` | `SettingsContext` + `useSettings` (transient open/close, not persisted); `SettingsPanel` renders both desktop dropdown (fixed top-start, under File menu) and mobile start-side drawer (breakpoint-gated, single component); shared sections — COLOR THEME rows (swatch+accent ring+✓), KEYBOARD SHORTCUTS, LANGUAGE toggle (next-intl `router.replace(pathname,{locale})`), footer; desktop-only QUICK ACTIONS (Copilot Chat→open, Download Resume→`/Saeed_Panahi_Resume.pdf`, Toggle Fullscreen, +placeholders); mobile-only Copilot pill + LINKS (FaGithub/FaLinkedin/FaMedium/SiLeetcode); Esc-to-close + body-scroll lock; wired ActivityBar gear (toggle) + MobileNav drawer gear (open); `SettingsProvider` added to layout; added `settings.{links,close,openCopilot,actions.*,shortcuts.*,footer.*}` i18n keys (EN+FA) |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 10 — Settings panel
-**References:** `.claude/screenshots/settings-desktop.png`, `settings-mobile.png`
-**Suggested commit:** `feat(settings): build Settings Panel with theme switcher and language toggle for desktop and mobile`
-
-What to build:
-1. **`src/features/theme/components/SettingsPanel/SettingsPanel.tsx`**
-2. Desktop: dropdown anchored under the **File** menu item (top-left position per screenshot). Mobile: slide-in drawer from start side.
-3. Sections (per screenshots):
-   - Mobile-only: "Open Saeed's Copilot" pill button at top — calls `useCopilotPane().open()`
-   - **COLOR THEME** — 6 theme rows. Each row: swatch dot (`background: theme.swatch.background`, `accent` ring) + emoji + name + checkmark when active. Click → `setTheme(id)`.
-   - Desktop-only: **QUICK ACTIONS** — Command Palette / Toggle Terminal / Copilot Chat / Download Resume / Toggle Fullscreen (most are no-op placeholders; "Copilot Chat" calls `useCopilotPane().open()`; "Download Resume" links to `/Saeed_Panahi_Resume.pdf` in `public/`).
-   - **KEYBOARD SHORTCUTS** — display-only list: Ctrl+P, Ctrl+B, Ctrl+\`, Esc, ↑/↓
-   - **LANGUAGE** — pair of buttons (EN / FA). Use `useRouter` from `@/i18n/navigation` + current pathname to switch locale.
-   - Mobile-only: **LINKS** section with social cards
-   - Footer: `Portfolio v3.0 · Next.js + Tailwind / Made with 💜 by Saeed Panahi`
-4. Add an `useSettings` hook or just lift open/close state where used. Two consumers need it: ActivityBar bottom gear (currently no-op) and MobileNav drawer header gear (also no-op).
-5. Wire gear buttons in `ActivityBar` + `MobileNav` to open the panel.
 
 ### Phase 11 — Mock API service layer
 **Suggested commit:** `feat(api): scaffold mock API service layer for all 5 pages with typed mock data`

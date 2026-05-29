@@ -10,6 +10,7 @@ import {
   VscSparkle,
   VscSettingsGear,
 } from "react-icons/vsc";
+import { useSettings } from "@/features/theme/hooks/useSettings";
 
 type ActivityKey = "explorer" | "search" | "git" | "downloads" | "copilot";
 
@@ -29,6 +30,7 @@ const ITEMS: readonly ActivityItem[] = [
 
 export function ActivityBar() {
   const [active, setActive] = useState<ActivityKey>("explorer");
+  const { toggle: toggleSettings, isOpen: settingsOpen } = useSettings();
 
   return (
     <aside
@@ -72,9 +74,12 @@ export function ActivityBar() {
         <li>
           <button
             type="button"
+            onClick={toggleSettings}
             title="Settings"
             aria-label="Settings"
+            aria-pressed={settingsOpen}
             className="grid h-12 w-12 place-items-center transition-colors hover:text-white"
+            style={{ color: settingsOpen ? "var(--color-activitybar-active)" : undefined }}
           >
             <VscSettingsGear className="h-6 w-6" aria-hidden="true" />
           </button>

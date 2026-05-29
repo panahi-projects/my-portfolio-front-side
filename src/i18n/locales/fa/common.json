@@ -39,7 +39,28 @@
     "theme": "تم رنگی",
     "language": "زبان",
     "quickActions": "اقدامات سریع",
-    "keyboardShortcuts": "میانبرهای صفحه‌کلید"
+    "keyboardShortcuts": "میانبرهای صفحه‌کلید",
+    "links": "پیوندها",
+    "close": "بستن تنظیمات",
+    "openCopilot": "باز کردن کوپایلوت سعید",
+    "actions": {
+      "commandPalette": "پنل دستورات",
+      "toggleTerminal": "نمایش/پنهان ترمینال",
+      "copilotChat": "گفتگو با کوپایلوت",
+      "downloadResume": "دانلود رزومه",
+      "toggleFullscreen": "تمام‌صفحه"
+    },
+    "shortcuts": {
+      "goToFile": "رفتن به فایل (پنل دستورات)",
+      "toggleSidebar": "نمایش/پنهان نوار کناری",
+      "toggleTerminal": "نمایش/پنهان ترمینال",
+      "closeOverlay": "بستن پنجره",
+      "terminalHistory": "تاریخچه ترمینال"
+    },
+    "footer": {
+      "version": "نمونه‌کار نسخه ۳.۰ · Next.js + Tailwind",
+      "madeWith": "ساخته‌شده با 💜 توسط سعید پناهی"
+    }
   },
   "languages": {
     "en": "English",

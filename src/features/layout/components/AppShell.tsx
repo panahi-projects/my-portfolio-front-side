@@ -7,6 +7,7 @@ import { TabsBar } from "./TabsBar";
 import { StatusBar } from "./StatusBar";
 import { MobileNav } from "./MobileNav";
 import { CopilotPane, CopilotPaneMobile } from "./CopilotPane";
+import { SettingsPanel } from "@/features/theme/components/SettingsPanel";
 
 /**
  * Top-level shell that renders the VS Code chrome around `children`.
@@ -24,6 +25,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       {/* Mobile Copilot — full-screen overlay; hidden on desktop */}
       <CopilotPaneMobile />
+
+      {/* Settings — desktop dropdown + mobile drawer (renders both, breakpoint-gated) */}
+      <SettingsPanel />
 
       {/* Desktop chrome */}
       <div className="hidden md:block">

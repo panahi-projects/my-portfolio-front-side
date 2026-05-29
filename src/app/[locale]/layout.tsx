@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing, isRtl } from "@/i18n/routing";
 import { ThemeProvider } from "@/features/theme/context/ThemeContext";
+import { SettingsProvider } from "@/features/theme/context/SettingsContext";
 import { ThemeInitScript } from "@/features/theme/components/ThemeInitScript";
 import { DEFAULT_THEME } from "@/features/theme/constants/themes";
 import { AppShell } from "@/features/layout/components/AppShell";
@@ -58,11 +59,13 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>
           <ThemeProvider>
-            <TabsProvider>
-              <CopilotProvider>
-                <AppShell>{children}</AppShell>
-              </CopilotProvider>
-            </TabsProvider>
+            <SettingsProvider>
+              <TabsProvider>
+                <CopilotProvider>
+                  <AppShell>{children}</AppShell>
+                </CopilotProvider>
+              </TabsProvider>
+            </SettingsProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

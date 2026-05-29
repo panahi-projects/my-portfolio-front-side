@@ -39,7 +39,28 @@
     "theme": "Color Theme",
     "language": "Language",
     "quickActions": "Quick Actions",
-    "keyboardShortcuts": "Keyboard Shortcuts"
+    "keyboardShortcuts": "Keyboard Shortcuts",
+    "links": "Links",
+    "close": "Close settings",
+    "openCopilot": "Open Saeed's Copilot",
+    "actions": {
+      "commandPalette": "Command Palette",
+      "toggleTerminal": "Toggle Terminal",
+      "copilotChat": "Copilot Chat",
+      "downloadResume": "Download Resume",
+      "toggleFullscreen": "Toggle Fullscreen"
+    },
+    "shortcuts": {
+      "goToFile": "Go to file (command palette)",
+      "toggleSidebar": "Toggle sidebar",
+      "toggleTerminal": "Toggle terminal",
+      "closeOverlay": "Close overlay",
+      "terminalHistory": "Terminal history"
+    },
+    "footer": {
+      "version": "Portfolio v3.0 · Next.js + Tailwind",
+      "madeWith": "Made with 💜 by Saeed Panahi"
+    }
   },
   "languages": {
     "en": "English",

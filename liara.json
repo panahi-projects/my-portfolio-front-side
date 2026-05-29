@@ -1,0 +1,13 @@
+{
+  "app": "panahi-portfolio",
+  "port": 3000,
+  "build": {
+    "location": "iran"
+  },
+  "disks": [
+    {
+      "name": "my-portfolio-disk",
+      "mountTo": "path/to/folder"
+    }
+  ]
+}

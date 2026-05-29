@@ -29,6 +29,8 @@ jest.mock("@/i18n/navigation", () => {
 
 beforeEach(() => {
   localStorage.clear();
+  // ThemeProvider writes to <html data-theme>; reset so each test starts clean.
+  delete document.documentElement.dataset.theme;
   const nav = jest.requireMock("@/i18n/navigation") as {
     usePathname: jest.Mock;
     useRouter: jest.Mock;

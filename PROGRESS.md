@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-21 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green. On branch `main`.
+**Current state:** Phases 1-22 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green (13 suites / 36 tests). On branch `main`.
 
-**Next up:** Phase 22 — Page + service tests.
+**Next up:** Phase 23 — README.md.
 
 ---
 
@@ -138,16 +138,11 @@ src/
 | 19 | Layout component tests | `test(layout): add unit tests for TitleBar, MenuBar, ActivityBar, SidebarPanel, TabsBar, StatusBar` | Test infra: `src/test-utils/render.tsx` (`renderWithProviders` wraps NextIntl+Theme+Settings+Tabs+Copilot, optional `locale`), `src/test-utils/intl.ts` (`messages` + `makeT` for server views); `jest.setup.ts` mocks `@/i18n/navigation` (stable router + controllable `usePathname`, `Link`→`<a>`), clears localStorage + `data-theme` per test; `jest.config.ts` drops the node_modules transform-ignore so ESM-only `next-intl`/`use-intl` transpile. 6 suites / 12 tests — render + localized strings + interactions (MenuBar dropdown opens, ActivityBar active-state + Settings toggle, Sidebar link hrefs, Tabs × → welcome) + theme reflects in `data-theme` + StatusBar label. `npm test` green. |
 | 20 | Theme + settings tests | `test(theme): add unit tests for ThemeContext, useTheme, and SettingsPanel` | `ThemeContext`: `setTheme` syncs `<html data-theme>` + `localStorage[portfolio-theme]` + context value. `useTheme`: throws outside provider (console.error spied). `SettingsPanel`: closed→`open()` shows dialogs; clicking a theme row applies it (`data-theme` + `aria-pressed`); active theme marked `aria-pressed=true`; clicking فارسی calls `router.replace("/", {locale:"fa"})`. Note: both desktop+mobile variants mount in jsdom (CSS-hidden only), so tests use `getAllByRole(...)[0]`. 2 suites / 6 tests. |
 | 21 | Copilot pane tests | `test(copilot): add unit tests for CopilotPane, CopilotPaneTrigger, and useCopilotPane` | `jest.setup.ts` mocks `HTMLElement.prototype.scrollIntoView` (jsdom lacks it). `CopilotContext`: persists open→localStorage; rehydrates open+messages on mount; `sendMessage` adds user bubble immediately + mock assistant after `advanceTimersByTime(1000)` (fake timers); `clearMessages` empties. `CopilotPaneTrigger`: toggles + `aria-pressed` + persistence. `CopilotPane`: welcome + suggestion chips, sending a chip replaces welcome with the user message, auto-scroll calls `scrollIntoView` on new message. 3 suites / 8 tests. |
+| 22 | Page + service tests | `test(pages): add unit tests for all page components and mock API services` | `services.test.ts`: each `get<Page>Data()` resolves to its typed mock (`toEqual`) + structural spot-checks. `pages.test.tsx`: renders each async server **view** by awaiting it (`await HomeHero({data})` …) with `next-intl/server` mocked via `makeT`; asserts mock content shows (name/heading/role/skill/company/social + ContactForm submit). Added jsdom stubs for `IntersectionObserver`/`ResizeObserver` (framer `useInView`). Kept lint at the 4-baseline (eslint-disable on the two `require()` jest.mock factories; named the jest.config default export). Full suite: 13 suites / 36 tests green; `next build` green. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 22 — Page + service tests
-**Suggested commit:** `test(pages): add unit tests for all page components and mock API services`
-
-- Each page renders with mock data.
-- Each `get<Page>Data` returns a typed mock matching its interface.
 
 ### Phase 23 — README.md
 **Suggested commit:** `docs: write README with setup guide, architecture overview, and contribution notes`

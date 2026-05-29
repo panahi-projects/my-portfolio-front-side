@@ -27,10 +27,14 @@ jest.mock("@/i18n/navigation", () => {
   };
 });
 
+// jsdom doesn't implement scrollIntoView; the Copilot panes call it on new messages.
+window.HTMLElement.prototype.scrollIntoView = jest.fn();
+
 beforeEach(() => {
   localStorage.clear();
   // ThemeProvider writes to <html data-theme>; reset so each test starts clean.
   delete document.documentElement.dataset.theme;
+  (window.HTMLElement.prototype.scrollIntoView as jest.Mock).mockClear();
   const nav = jest.requireMock("@/i18n/navigation") as {
     usePathname: jest.Mock;
     useRouter: jest.Mock;

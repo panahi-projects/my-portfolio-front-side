@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-20 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green. On branch `main`.
+**Current state:** Phases 1-21 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales); `npm test` green. On branch `main`.
 
-**Next up:** Phase 21 — Copilot pane tests.
+**Next up:** Phase 22 — Page + service tests.
 
 ---
 
@@ -137,18 +137,11 @@ src/
 | 18 | RTL layout for FA | `feat(i18n): add RTL layout mirroring for Farsi locale` | Audited physical-direction CSS — codebase was already almost fully logical. Fixes: MenuBar dropdown `left-0`→`start-0`; chat bubble corner `borderTop{Left,Right}Radius`→logical `borderStart{Start,End}Radius`. Caught the real RTL gap — framer-motion `x` transforms are **physical** and don't flip under `dir=rtl`: added `useDirection()` hook (`src/shared/hooks`) returning `hiddenStart`/`hiddenEnd` from `isRtl(useLocale())`, wired into the three slide-in panels (MobileNav drawer + SettingsPanel mobile drawer = start-anchored; desktop CopilotPane = end-anchored). `flex-row-reverse` chat rows are already `dir`-aware (no change). No `space-x-*` (would be physical) anywhere. `<html dir>` per-locale unchanged (confirmed `dir=rtl` for FA earlier). |
 | 19 | Layout component tests | `test(layout): add unit tests for TitleBar, MenuBar, ActivityBar, SidebarPanel, TabsBar, StatusBar` | Test infra: `src/test-utils/render.tsx` (`renderWithProviders` wraps NextIntl+Theme+Settings+Tabs+Copilot, optional `locale`), `src/test-utils/intl.ts` (`messages` + `makeT` for server views); `jest.setup.ts` mocks `@/i18n/navigation` (stable router + controllable `usePathname`, `Link`→`<a>`), clears localStorage + `data-theme` per test; `jest.config.ts` drops the node_modules transform-ignore so ESM-only `next-intl`/`use-intl` transpile. 6 suites / 12 tests — render + localized strings + interactions (MenuBar dropdown opens, ActivityBar active-state + Settings toggle, Sidebar link hrefs, Tabs × → welcome) + theme reflects in `data-theme` + StatusBar label. `npm test` green. |
 | 20 | Theme + settings tests | `test(theme): add unit tests for ThemeContext, useTheme, and SettingsPanel` | `ThemeContext`: `setTheme` syncs `<html data-theme>` + `localStorage[portfolio-theme]` + context value. `useTheme`: throws outside provider (console.error spied). `SettingsPanel`: closed→`open()` shows dialogs; clicking a theme row applies it (`data-theme` + `aria-pressed`); active theme marked `aria-pressed=true`; clicking فارسی calls `router.replace("/", {locale:"fa"})`. Note: both desktop+mobile variants mount in jsdom (CSS-hidden only), so tests use `getAllByRole(...)[0]`. 2 suites / 6 tests. |
+| 21 | Copilot pane tests | `test(copilot): add unit tests for CopilotPane, CopilotPaneTrigger, and useCopilotPane` | `jest.setup.ts` mocks `HTMLElement.prototype.scrollIntoView` (jsdom lacks it). `CopilotContext`: persists open→localStorage; rehydrates open+messages on mount; `sendMessage` adds user bubble immediately + mock assistant after `advanceTimersByTime(1000)` (fake timers); `clearMessages` empties. `CopilotPaneTrigger`: toggles + `aria-pressed` + persistence. `CopilotPane`: welcome + suggestion chips, sending a chip replaces welcome with the user message, auto-scroll calls `scrollIntoView` on new message. 3 suites / 8 tests. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 21 — Copilot pane tests
-**Suggested commit:** `test(copilot): add unit tests for CopilotPane, CopilotPaneTrigger, and useCopilotPane`
-
-- Trigger toggles pane; `aria-pressed` reflects state.
-- Pane state + messages persist to localStorage and rehydrate.
-- `sendMessage` appends user bubble + delayed assistant bubble.
-- Chat area auto-scrolls (mock `scrollIntoView`).
 
 ### Phase 22 — Page + service tests
 **Suggested commit:** `test(pages): add unit tests for all page components and mock API services`

@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-12 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-13 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 13 — About page.
+**Next up:** Phase 14 — Skills page.
 
 ---
 
@@ -129,19 +129,11 @@ src/
 | 10 | Settings panel | `feat(settings): build Settings Panel with theme switcher and language toggle for desktop and mobile` | `SettingsContext` + `useSettings` (transient open/close, not persisted); `SettingsPanel` renders both desktop dropdown (fixed top-start, under File menu) and mobile start-side drawer (breakpoint-gated, single component); shared sections — COLOR THEME rows (swatch+accent ring+✓), KEYBOARD SHORTCUTS, LANGUAGE toggle (next-intl `router.replace(pathname,{locale})`), footer; desktop-only QUICK ACTIONS (Copilot Chat→open, Download Resume→`/Saeed_Panahi_Resume.pdf`, Toggle Fullscreen, +placeholders); mobile-only Copilot pill + LINKS (FaGithub/FaLinkedin/FaMedium/SiLeetcode); Esc-to-close + body-scroll lock; wired ActivityBar gear (toggle) + MobileNav drawer gear (open); `SettingsProvider` added to layout; added `settings.{links,close,openCopilot,actions.*,shortcuts.*,footer.*}` i18n keys (EN+FA) |
 | 11 | Mock API service layer | `feat(api): scaffold mock API service layer for all 5 pages with typed mock data` | Per-page types in `src/features/<page>/types/index.ts` (`HomeData`/`AboutData`/`SkillsData`/`ExperienceData`/`ContactData` + sub-interfaces); typed mocks in `src/services/api/mock/<page>.mock.ts` (content from `INFO.md`); async services `src/services/api/<page>.service.ts` exporting `get<Page>Data(): Promise<…>` with `// TODO: Replace with real API call`. Service path matches Phase 12's `services/api/home.service.ts` reference. Not yet wired to UI (pages consume them from Phase 12 on). |
 | 12 | Home page | `feat(home): implement Home page with hero section, typing animation, and mock data` | `page.tsx` (server) fetches `getHomeData()` → renders `HomeHero` (async server component); green code-comment banner (i18n `home.banner`), name split (Saeed plain + Panahi accent gradient via `bg-clip-text`), role chips (dot/`@company`), client `TypingTagline` island driven by `useTypingEffect` hook (all setState in timeouts → lint-clean), intro paragraph with accent keyword highlighting, CTA buttons (Link for internal / `<a>` for hash+external), 4-col stats grid w/ logical-border dividers, social row; slug→icon map in `home/constants/icons.ts` (fa6/si/vsc, Tableau→VscGraphLine). Verified via SSR (EN content + FA banner + `dir=rtl`). |
+| 13 | About page | `feat(about): implement About page with bio, current focus, education, and CV download` | `about/page.tsx` (server) fetches `getAboutData()` → renders `AboutView` (async server component); green HTML-comment banner (`about.banner`), "About Me" heading + `// who I am · …` subtitle, bio card (availability dot + location + accent keyword highlighting), CURRENT FOCUS 2-col emoji grid, EDUCATION list (🎓 + institution/degree/period), Download CV button (`VscCloudDownload` → `cvUrl`); teal `SectionHeading` (#4ec9b0); added `about.{banner,currentFocus,education,downloadCv}` i18n keys (EN+FA). Verified via build static prerender of `/en/about` + `/fa/about`. |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 13 — About page
-**Reference:** `.claude/screenshots/2-page-about.png`, `mobile-page (4).png`
-- HTML-comment banner `<!-- about.html - Saeed Panahi -->`
-- "About Me" + subtitle `// who I am · what I do · where I build`
-- Bio card with inline highlighted keywords
-- "CURRENT FOCUS" grid (4 items + emoji icons)
-- "EDUCATION" section
-- "Download CV" button
 
 ### Phase 14 — Skills page
 **Reference:** `.claude/screenshots/3-page-skills.png`, `mobile-page (2).png`

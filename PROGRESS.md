@@ -2,9 +2,9 @@
 
 VS Code-themed personal portfolio for **Saeed Panahi**, built phase-by-phase per [`.claude/PROMPT.md`](.claude/PROMPT.md). Each phase ships as its own conventional commit so any partial branch is shippable.
 
-**Current state:** Phases 1-10 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
+**Current state:** Phases 1-11 done + UI alignment pass. `npx next build` is green (10 prerendered routes = 5 pages × 2 locales). On branch `main`.
 
-**Next up:** Phase 11 — Mock API service layer.
+**Next up:** Phase 12 — Home page.
 
 ---
 
@@ -127,32 +127,11 @@ src/
 | 8 | Copilot Pane (desktop) | `feat(copilot): implement desktop Copilot Pane with mock chat interface and panel state persistence` | `CopilotContext` extended with `messages`/`isThinking`/`sendMessage`/`clearMessages` + `portfolio-copilot-messages` persistence; `mockReplies.ts` (10 replies); `CopilotPane` (slide-in 35% panel, welcome + 6 suggestion chips, auto-scroll, thinking dots), `CopilotChatMessage`, `CopilotChatInput`; `AppShell` editor column split into `<main>` + pane (md:+); added `copilot.{clear,you,assistant,suggestions}` i18n keys (EN+FA) |
 | 9 | Copilot Pane (mobile) | `feat(copilot): add mobile full-screen variant of Copilot Pane with swipe dismiss` | `CopilotPaneMobile` (approach b — `flex md:hidden` full-screen overlay rendered in `AppShell`); slides up + swipe-down-to-dismiss via `useDragControls` (header is the drag handle so list still scrolls), body-scroll lock; mirrors MobileNav top bar + identity row + workspace chip + disclaimer; reuses `CopilotChatMessage`/`CopilotChatInput`; added `copilot.{workspace,path,disclaimer}` i18n keys (EN+FA) |
 | 10 | Settings panel | `feat(settings): build Settings Panel with theme switcher and language toggle for desktop and mobile` | `SettingsContext` + `useSettings` (transient open/close, not persisted); `SettingsPanel` renders both desktop dropdown (fixed top-start, under File menu) and mobile start-side drawer (breakpoint-gated, single component); shared sections — COLOR THEME rows (swatch+accent ring+✓), KEYBOARD SHORTCUTS, LANGUAGE toggle (next-intl `router.replace(pathname,{locale})`), footer; desktop-only QUICK ACTIONS (Copilot Chat→open, Download Resume→`/Saeed_Panahi_Resume.pdf`, Toggle Fullscreen, +placeholders); mobile-only Copilot pill + LINKS (FaGithub/FaLinkedin/FaMedium/SiLeetcode); Esc-to-close + body-scroll lock; wired ActivityBar gear (toggle) + MobileNav drawer gear (open); `SettingsProvider` added to layout; added `settings.{links,close,openCopilot,actions.*,shortcuts.*,footer.*}` i18n keys (EN+FA) |
+| 11 | Mock API service layer | `feat(api): scaffold mock API service layer for all 5 pages with typed mock data` | Per-page types in `src/features/<page>/types/index.ts` (`HomeData`/`AboutData`/`SkillsData`/`ExperienceData`/`ContactData` + sub-interfaces); typed mocks in `src/services/api/mock/<page>.mock.ts` (content from `INFO.md`); async services `src/services/api/<page>.service.ts` exporting `get<Page>Data(): Promise<…>` with `// TODO: Replace with real API call`. Service path matches Phase 12's `services/api/home.service.ts` reference. Not yet wired to UI (pages consume them from Phase 12 on). |
 
 ---
 
 ## 🚧 Phases remaining
-
-### Phase 11 — Mock API service layer
-**Suggested commit:** `feat(api): scaffold mock API service layer for all 5 pages with typed mock data`
-
-1. Per page: `src/services/api/mock/<page>.mock.ts` + `<page>.service.ts`
-   - `<page>.service.ts` exports an async `get<Page>Data(): Promise<<Page>Data>` that returns the mock. Leave a `// TODO: Replace with real API call` comment.
-2. Define types in `src/features/<page>/types/index.ts`:
-   - `HomeData`: `name`, `title`, `tagline`, `roleChips[]`, `ctaButtons[]`, `socialLinks[]`, `stats[]`
-   - `AboutData`: `bio`, `location`, `availabilityStatus`, `currentFocus[]`, `education[]`, `cvUrl`
-   - `SkillsData`: `categories[{ name, skills[{ name, icon, proficiency }] }]`
-   - `ExperienceData`: `experiences[{ company, role, startDate, endDate, location, achievements[], techStack[], current }]`
-   - `ContactData`: `email`, `socialLinks[]`, `location`, `timezone`
-3. Mock content from `INFO.md`:
-   - Name: Saeed Panahi
-   - Title: Front-end Developer
-   - Role chips: "Frontend Developer", "Full Stack", "JS / TS / React"
-   - Current company: Balinex (front-end developer)
-   - Stack: JavaScript, TypeScript, Next.js, React, Vue, Nuxt, Tailwind, Vuetify, Bootstrap, Sass, CSS3, HTML5, Jest, C#, Webpack, Socket.io, RabbitMQ, MUI, NestJS, Vite, Vitest, Git, Zustand, Redux, Docker, Swagger, Postman, MongoDB, Redis, VSCode
-   - 7+ years experience
-   - LinkedIn: `linkedin.com/in/saeed-panahi-developer92`
-   - Email: `panahi.projects@gmail.com`
-   - GitHub: `panahi-projects`
 
 ### Phase 12 — Home page
 **References:** `.claude/screenshots/1-page-home.png`, `mobile-page (1).png`

@@ -6,6 +6,7 @@ import { SidebarPanel } from "./SidebarPanel";
 import { TabsBar } from "./TabsBar";
 import { StatusBar } from "./StatusBar";
 import { MobileNav } from "./MobileNav";
+import { CopilotPane } from "./CopilotPane";
 
 /**
  * Top-level shell that renders the VS Code chrome around `children`.
@@ -34,17 +35,21 @@ export function AppShell({ children }: { children: ReactNode }) {
           <SidebarPanel />
         </div>
 
-        {/* Editor column: Tabs + scrollable main content */}
+        {/* Editor column: Tabs + (main content | Copilot pane) */}
         <div className="flex min-w-0 flex-1 flex-col">
           <div className="hidden md:block">
             <TabsBar />
           </div>
-          <main
-            className="min-h-0 flex-1 overflow-y-auto"
-            style={{ background: "var(--color-editor-bg)", color: "var(--color-editor-text)" }}
-          >
-            {children}
-          </main>
+          {/* Editor shrinks to ~65% when the Copilot pane slides in (desktop only) */}
+          <div className="flex min-h-0 flex-1">
+            <main
+              className="min-h-0 flex-1 overflow-y-auto"
+              style={{ background: "var(--color-editor-bg)", color: "var(--color-editor-text)" }}
+            >
+              {children}
+            </main>
+            <CopilotPane />
+          </div>
         </div>
       </div>
 

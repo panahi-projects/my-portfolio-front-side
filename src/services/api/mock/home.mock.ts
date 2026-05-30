@@ -9,14 +9,16 @@ export const homeMock: HomeData = {
     "Crafting clean, maintainable code",
     "Shipping delightful user experiences",
     "Turning ideas into interfaces",
+    "Consulting on software architecture",
   ],
   intro:
     "I'm a front-end developer with 7+ years of experience building intuitive, " +
     "performant interfaces. I work at the intersection of clean code and great UX, " +
     "currently crafting production UIs at Balinex.",
   roleChips: [
+    { label: "Senior Software Engineer", dotColor: "#c084fc" },
+    { label: "Full-Stack Developer", dotColor: "#f59e0b" },
     { label: "Frontend Developer", dotColor: "#4ade80" },
-    { label: "Full Stack", dotColor: "#c084fc" },
     { label: "JS · TS · React", dotColor: "#38bdf8" },
     { label: "Balinex", isCompany: true },
   ],

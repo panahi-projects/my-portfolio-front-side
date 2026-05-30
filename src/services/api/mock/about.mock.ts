@@ -7,7 +7,7 @@ export const aboutMock: AboutData = {
     "JavaScript, TypeScript, Next.js, React and more. With 7+ years of experience I've " +
     "collaborated with diverse teams, solved complex problems, and delivered high-quality " +
     "solutions that meet real user needs.",
-  location: "Tehran, Iran",
+  location: "Shiraz, Iran",
   availabilityStatus: "Open to opportunities & collaborations",
   currentFocus: [
     {

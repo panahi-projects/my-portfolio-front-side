@@ -52,7 +52,7 @@ export async function AboutView({ data }: { data: AboutData }) {
   const t = about;
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-6 py-8 md:px-10 md:py-12">
+    <div className="mx-auto w-full max-w-6xl px-6 py-8 md:px-10 md:py-12">
       {/* HTML-comment banner */}
       <p className="font-mono text-sm text-green-400 md:text-base">{t.banner}</p>
 
